@@ -40,6 +40,10 @@ dependencies {
     compile "com.google.dagger:dagger:$Libs.daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$Libs.daggerVersion"
 
+    //RXJAVA 2
+    implementation "io.reactivex.rxjava2:rxandroid:$Libs.rxAndroidVersion"
+    implementation "io.reactivex.rxjava2:rxjava:$Libs.rxJavaVersion"
+
     testImplementation "junit:junit:$Tests.jUnitVersion"
 
     androidTestImplementation "com.android.support.test:runner:$Tests.testRunnerVersion"
