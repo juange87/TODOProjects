@@ -1,7 +1,7 @@
 package com.juange.todoprojects.data.di
 
-import com.juange.todoprojects.data.ProjectsRepositoryImpl
-import com.juange.todoprojects.domain.repository.ProjectsRepository
+import com.juange.todoprojects.data.ProjectRepositoryImpl
+import com.juange.todoprojects.domain.repository.ProjectRepository
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -11,5 +11,5 @@ class RepositoriesModule {
 
     @Provides
     @Singleton
-    fun provideProjectsRepository(repository: ProjectsRepositoryImpl): ProjectsRepository = repository
+    fun provideProjectRepository(repository: ProjectRepositoryImpl): ProjectRepository = repository
 }

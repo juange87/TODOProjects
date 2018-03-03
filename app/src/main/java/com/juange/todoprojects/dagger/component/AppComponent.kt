@@ -3,7 +3,9 @@ package com.juange.todoprojects.dagger.component
 import com.juange.todoprojects.app.AndroidApplication
 import com.juange.todoprojects.dagger.module.ActivityModule
 import com.juange.todoprojects.dagger.module.AppModule
-import com.juange.todoprojects.domain.repository.ProjectsRepository
+import com.juange.todoprojects.data.datasource.ProjectLocalDataSource
+import com.juange.todoprojects.data.datasource.ProjectRemoteDataSource
+import com.juange.todoprojects.domain.repository.ProjectRepository
 import dagger.Component
 import javax.inject.Singleton
 
@@ -12,7 +14,9 @@ import javax.inject.Singleton
 interface AppComponent {
     fun inject(app: AndroidApplication)
 
-    abstract fun projectsRepository(): ProjectsRepository
+    abstract fun projectsRepository(): ProjectRepository
+    abstract fun projectLocalDataSource(): ProjectLocalDataSource
+    abstract fun projectRemoteDataSource(): ProjectRemoteDataSource
 
     fun plus(activityModule: ActivityModule): ActivityComponent
 }

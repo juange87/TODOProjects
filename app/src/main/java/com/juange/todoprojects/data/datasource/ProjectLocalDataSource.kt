@@ -1,8 +1,8 @@
-package com.juange.todoprojects.domain.repository
+package com.juange.todoprojects.data.datasource
 
 import com.juange.todoprojects.domain.model.Project
 import io.reactivex.Single
 
-interface ProjectsRepository {
+interface ProjectLocalDataSource {
     fun getProjects(): Single<List<Project>>
 }
