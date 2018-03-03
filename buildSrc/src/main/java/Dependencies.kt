@@ -24,6 +24,12 @@ object Libs {
 
     val rxJavaVersion = "2.1.10"
     val rxAndroidVersion = "2.0.2"
+
+    val roomVersion = "1.0.0"
+
+    val retrofitVersion = "2.3.0"
+    val gsonConverterVersion = "2.3.0"
+    val okhttpVersion = "3.10.0"
 }
 
 object Tests {

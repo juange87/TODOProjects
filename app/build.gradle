@@ -31,19 +31,32 @@ kapt {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    //KOTLIN
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$Libs.kotlinVersion"
 
+    //ANDROID
     implementation "com.android.support:appcompat-v7:$Libs.appCompatVersion"
     implementation "com.android.support.constraint:constraint-layout:$Libs.constraintLayoutVersion"
 
     //DAGGER
-    compile "com.google.dagger:dagger:$Libs.daggerVersion"
+    implementation "com.google.dagger:dagger:$Libs.daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$Libs.daggerVersion"
 
     //RXJAVA 2
     implementation "io.reactivex.rxjava2:rxandroid:$Libs.rxAndroidVersion"
     implementation "io.reactivex.rxjava2:rxjava:$Libs.rxJavaVersion"
 
+    //ROOM
+    implementation "android.arch.persistence.room:runtime:$Libs.roomVersion"
+    implementation "android.arch.persistence.room:rxjava2:$Libs.roomVersion"
+    annotationProcessor "android.arch.persistence.room:compiler:$Libs.roomVersion"
+
+    //NET
+    implementation "com.squareup.retrofit2:retrofit:$Libs.retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$Libs.gsonConverterVersion"
+    implementation "com.squareup.okhttp3:okhttp:$Libs.okhttpVersion"
+
+    //TEST
     testImplementation "junit:junit:$Tests.jUnitVersion"
 
     androidTestImplementation "com.android.support.test:runner:$Tests.testRunnerVersion"
