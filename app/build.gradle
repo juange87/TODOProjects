@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 apply from: "../config/jacoco.gradle"
 
@@ -23,6 +24,10 @@ android {
     }
 }
 
+kapt {
+    generateStubs = true
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -31,8 +36,18 @@ dependencies {
     implementation "com.android.support:appcompat-v7:$Libs.appCompatVersion"
     implementation "com.android.support.constraint:constraint-layout:$Libs.constraintLayoutVersion"
 
+    //DAGGER
+    compile "com.google.dagger:dagger:$Libs.daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$Libs.daggerVersion"
+
     testImplementation "junit:junit:$Tests.jUnitVersion"
 
     androidTestImplementation "com.android.support.test:runner:$Tests.testRunnerVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$Tests.espressoVersion"
+}
+
+gradle.projectsEvaluated {
+    tasks.withType(JavaCompile) {
+        options.compilerArgs << "-Xmaxerrs" << "500" // or whatever number you want
+    }
 }

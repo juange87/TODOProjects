@@ -19,6 +19,9 @@ object Libs {
 
     val appCompatVersion = "26.1.0"
     val constraintLayoutVersion = "1.0.2"
+
+    //DAGGER
+    val daggerVersion = "2.14.1"
 }
 
 object Tests {
