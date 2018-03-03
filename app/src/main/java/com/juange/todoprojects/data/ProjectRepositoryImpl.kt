@@ -17,5 +17,5 @@ class ProjectRepositoryImpl @Inject constructor(
         private val mapper: ProjectApiModelMapper) : ProjectRepository {
 
     override fun getProjects(): Single<List<Project>>
-            = remote.getProjects().map { mapper.mapToDomain(it) }
+            = remote.getProjects().map { mapper.mapListToDomain(it) }
 }

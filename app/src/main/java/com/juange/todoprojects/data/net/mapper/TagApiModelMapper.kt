@@ -16,7 +16,7 @@ class TagApiModelMapper @Inject constructor() {
         } ?: Tag()
     }
 
-    fun mapToDomain(list: List<TagApiModel>?): List<Tag> {
+    fun mapListToDomain(list: List<TagApiModel>?): List<Tag> {
         return list?.map { mapToDomain(it) } ?: emptyList()
     }
 }

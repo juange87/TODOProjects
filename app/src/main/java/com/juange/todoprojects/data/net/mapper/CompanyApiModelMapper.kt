@@ -15,8 +15,4 @@ class CompanyApiModelMapper @Inject constructor() {
             )
         } ?: Company()
     }
-
-    fun mapToDomain(list: List<CompanyApiModel>?): List<Company> {
-        return list?.map { mapToDomain(it) } ?: emptyList()
-    }
 }

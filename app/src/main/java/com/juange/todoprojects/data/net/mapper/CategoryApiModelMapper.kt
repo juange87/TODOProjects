@@ -15,8 +15,4 @@ class CategoryApiModelMapper @Inject constructor() {
             )
         } ?: Category()
     }
-
-    fun mapToDomain(list: List<CategoryApiModel>?): List<Category> {
-        return list?.map { mapToDomain(it) } ?: emptyList()
-    }
 }

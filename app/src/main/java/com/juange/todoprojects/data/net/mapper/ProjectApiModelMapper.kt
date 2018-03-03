@@ -28,7 +28,7 @@ class ProjectApiModelMapper @Inject constructor(
                     notifyEveryone = it.notifyEveryone,
                     filesAutoNewVersion = it.filesAutoNewVersion,
                     subStatus = it.subStatus,
-                    tags = tagApiModelMapper.mapToDomain(it.tags),
+                    tags = tagApiModelMapper.mapListToDomain(it.tags),
                     privacyEnabled = it.privacyEnabled,
                     isProjectAdmin = it.isProjectAdmin,
                     defaultPrivacy = it.defaultPrivacy,
@@ -42,7 +42,7 @@ class ProjectApiModelMapper @Inject constructor(
         } ?: Project()
     }
 
-    fun mapToDomain(list: List<ProjectApiModel>?): List<Project> {
+    fun mapListToDomain(list: List<ProjectApiModel>?): List<Project> {
         return list?.map { mapToDomain(it) } ?: emptyList()
     }
 }
