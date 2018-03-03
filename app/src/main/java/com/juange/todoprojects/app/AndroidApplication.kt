@@ -1,9 +1,9 @@
 package com.juange.todoprojects.app
 
 import android.app.Application
-import com.juange.todoprojects.dagger.AppComponent
-import com.juange.todoprojects.dagger.AppModule
-import com.juange.todoprojects.dagger.DaggerAppComponent
+import com.juange.todoprojects.dagger.component.AppComponent
+import com.juange.todoprojects.dagger.component.DaggerAppComponent
+import com.juange.todoprojects.dagger.module.AppModule
 
 class AndroidApplication : Application() {
 

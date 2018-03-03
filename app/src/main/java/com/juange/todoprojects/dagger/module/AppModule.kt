@@ -1,4 +1,4 @@
-package com.juange.todoprojects.dagger
+package com.juange.todoprojects.dagger.module
 
 import android.content.Context
 import com.juange.todoprojects.app.AndroidApplication
