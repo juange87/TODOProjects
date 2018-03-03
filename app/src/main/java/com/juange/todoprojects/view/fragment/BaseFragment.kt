@@ -19,6 +19,7 @@ abstract class BaseFragment : Fragment() {
     }
 
     abstract fun onViewReady()
+    abstract fun onViewDestroyed()
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
@@ -28,6 +29,11 @@ abstract class BaseFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         onViewReady()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        onViewDestroyed()
     }
 
     open fun doInjection(fragmentComponent: FragmentComponent) {
