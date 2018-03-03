@@ -2,11 +2,11 @@ package com.juange.todoprojects.data.net.model
 
 import com.google.gson.annotations.SerializedName
 
-data class ProjectApiModel(
+data class ProjectApiModelResponse(
         @SerializedName("STATUS") val status: String = "",
-        @SerializedName("projects") val projects: List<ProjectsItem>?)
+        @SerializedName("projects") val projects: List<ProjectApiModel>?)
 
-data class Company(
+data class CompanyApiModel(
         @SerializedName("is-owner")
         val isOwner: String = "",
         @SerializedName("name")
@@ -14,19 +14,7 @@ data class Company(
         @SerializedName("id")
         val id: String = "")
 
-
-data class Integrations(
-        @SerializedName("onedrivebusiness")
-        val onedrivebusiness: Onedrivebusiness,
-        @SerializedName("microsoftConnectors")
-        val microsoftConnectors: MicrosoftConnectors)
-
-
-data class Defaults(
-        @SerializedName("privacy") val privacy: String = "")
-
-
-data class Category(
+data class CategoryApiModel(
         @SerializedName("color")
         val color: String = "",
         @SerializedName("name")
@@ -34,8 +22,7 @@ data class Category(
         @SerializedName("id")
         val id: String = "")
 
-
-data class TagsItem(
+data class TagApiModel(
         @SerializedName("color")
         val color: String = "",
         @SerializedName("name")
@@ -43,24 +30,7 @@ data class TagsItem(
         @SerializedName("id")
         val id: String = "")
 
-
-data class Onedrivebusiness(
-        @SerializedName("folder")
-        val folder: String = "",
-        @SerializedName("foldername")
-        val foldername: String = "",
-        @SerializedName("enabled")
-        val enabled: Boolean = false,
-        @SerializedName("account")
-        val account: String = "")
-
-
-data class MicrosoftConnectors(
-        @SerializedName("enabled")
-        val enabled: Boolean = false)
-
-
-data class ProjectsItem(
+data class ProjectApiModel(
         @SerializedName("replyByEmailEnabled")
         val replyByEmailEnabled: Boolean = false,
         @SerializedName("endDate")
@@ -78,7 +48,7 @@ data class ProjectsItem(
         @SerializedName("logo")
         val logo: String = "",
         @SerializedName("company")
-        val company: Company,
+        val company: CompanyApiModel,
         @SerializedName("id")
         val id: String = "",
         @SerializedName("announcement")
@@ -88,13 +58,13 @@ data class ProjectsItem(
         @SerializedName("start-page")
         val startPage: String = "",
         @SerializedName("notifyeveryone")
-        val notifyeveryone: Boolean = false,
+        val notifyEveryone: Boolean = false,
         @SerializedName("filesAutoNewVersion")
         val filesAutoNewVersion: Boolean = false,
         @SerializedName("subStatus")
         val subStatus: String = "",
         @SerializedName("tags")
-        val tags: List<TagsItem>?,
+        val tags: List<TagApiModel>?,
         @SerializedName("privacyEnabled")
         val privacyEnabled: Boolean = false,
         @SerializedName("isProjectAdmin")
@@ -103,8 +73,6 @@ data class ProjectsItem(
         val defaultPrivacy: String = "",
         @SerializedName("last-changed-on")
         val lastChangedOn: String = "",
-        @SerializedName("defaults")
-        val defaults: Defaults,
         @SerializedName("name")
         val name: String = "",
         @SerializedName("show-announcement")
@@ -112,9 +80,7 @@ data class ProjectsItem(
         @SerializedName("harvest-timers-enabled")
         val harvestTimersEnabled: Boolean = false,
         @SerializedName("category")
-        val category: Category,
-        @SerializedName("integrations")
-        val integrations: Integrations,
+        val category: CategoryApiModel,
         @SerializedName("startDate")
         val startDate: String = "",
         @SerializedName("status")

@@ -1,10 +1,10 @@
-package com.juange.todoprojects.data.net
+package com.juange.todoprojects.data.net.api
 
 import com.juange.todoprojects.data.di.ApiModule
 import com.juange.todoprojects.data.net.base.HttpResponseCodes
 import com.juange.todoprojects.data.net.base.NetConnectivityManager
+import com.juange.todoprojects.data.net.model.ProjectApiModelResponse
 import com.juange.todoprojects.data.net.model.ProjectApiModel
-import com.juange.todoprojects.data.net.model.ProjectsItem
 import com.juange.todoprojects.exceptions.InternetNotReachableException
 import com.juange.todoprojects.exceptions.NotAuthorizedException
 import com.juange.todoprojects.exceptions.NotFoundException
@@ -20,13 +20,13 @@ class ProjectApiImpl @Inject constructor(
         @Named(ApiModule.PROJECT_SERVICE) private val service: ProjectService,
         private val connectivityManager: NetConnectivityManager) : ProjectApi {
 
-    override fun getProjects(): Single<List<ProjectsItem>> {
+    override fun getProjects(): Single<List<ProjectApiModel>> {
         return Single.create({
             if (!it.isDisposed) {
                 if (connectivityManager.internetConnectionAvailable()) {
                     try {
-                        val call: Call<ProjectApiModel> = service.getProjects()
-                        val response: Response<ProjectApiModel> = call.execute()
+                        val call: Call<ProjectApiModelResponse> = service.getProjects()
+                        val response: Response<ProjectApiModelResponse> = call.execute()
 
                         val headers = response.headers()
                         Logger.i("HEADERS: " + headers.toString())

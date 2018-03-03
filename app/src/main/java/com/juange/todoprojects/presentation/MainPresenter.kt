@@ -1,7 +1,7 @@
 package com.juange.todoprojects.presentation
 
 import android.util.Log
-import com.juange.todoprojects.data.net.model.ProjectsItem
+import com.juange.todoprojects.domain.model.Project
 import com.juange.todoprojects.domain.usecase.GetProjectsUseCase
 import com.juange.todoprojects.presentation.base.BasePresenter
 import com.juange.todoprojects.presentation.base.Presenter
@@ -24,9 +24,9 @@ class MainPresenter @Inject constructor(private val getProjectsUseCase: GetProje
     override fun init() {
         ui.showMessage()
 
-        getProjectsUseCase.execute(observer = object : DisposableSingleObserver<List<ProjectsItem>>() {
+        getProjectsUseCase.execute(observer = object : DisposableSingleObserver<List<Project>>() {
 
-            override fun onSuccess(todos: List<ProjectsItem>) {
+            override fun onSuccess(todos: List<Project>) {
                 // work with the resulting todos
                 Log.d("TODOPROJECT", "LIST: " + todos.toString())
             }
