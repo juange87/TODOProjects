@@ -1,13 +1,12 @@
 package com.juange.todoprojects.presentation
 
 import android.util.Log
-import com.juange.todoprojects.domain.model.Project
+import com.juange.todoprojects.data.net.model.ProjectsItem
 import com.juange.todoprojects.domain.usecase.GetProjectsUseCase
 import com.juange.todoprojects.presentation.base.BasePresenter
 import com.juange.todoprojects.presentation.base.Presenter
 import io.reactivex.observers.DisposableSingleObserver
 import javax.inject.Inject
-
 
 class MainPresenter @Inject constructor(private val getProjectsUseCase: GetProjectsUseCase)
     : BasePresenter<MainPresenter.MainPresenterContractView>() {
@@ -25,11 +24,11 @@ class MainPresenter @Inject constructor(private val getProjectsUseCase: GetProje
     override fun init() {
         ui.showMessage()
 
-        getProjectsUseCase.execute(observer = object : DisposableSingleObserver<List<Project>>() {
+        getProjectsUseCase.execute(observer = object : DisposableSingleObserver<List<ProjectsItem>>() {
 
-            override fun onSuccess(todos: List<Project>) {
+            override fun onSuccess(todos: List<ProjectsItem>) {
                 // work with the resulting todos
-                Log.d("TODOPROJECT", "LIST: " +todos.toString())
+                Log.d("TODOPROJECT", "LIST: " + todos.toString())
             }
 
             override fun onError(e: Throwable) {

@@ -1,8 +1,8 @@
-package com.juange.todoprojects.domain.repository
+package com.juange.todoprojects.data.net
 
 import com.juange.todoprojects.data.net.model.ProjectsItem
 import io.reactivex.Single
 
-interface ProjectRepository {
+interface ProjectApi {
     fun getProjects(): Single<List<ProjectsItem>>
 }
