@@ -14,14 +14,14 @@ object Core {
     val compileSdkVersion = 26
 }
 
-object ThirPartyLibs {
+object Libs {
     val kotlinVersion = "1.2.30"
 
     val appCompatVersion = "26.1.0"
     val constraintLayoutVersion = "1.0.2"
 }
 
-object TestDependencies {
+object Tests {
     //UNIT TESTS
     val jUnitVersion = "4.12"
 

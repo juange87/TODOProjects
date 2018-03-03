@@ -2,6 +2,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+apply from: "../config/jacoco.gradle"
+
 android {
     compileSdkVersion Core.compileSdkVersion
     defaultConfig {
@@ -24,13 +26,13 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$ThirPartyLibs.kotlinVersion"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$Libs.kotlinVersion"
 
-    implementation "com.android.support:appcompat-v7:$ThirPartyLibs.appCompatVersion"
-    implementation "com.android.support.constraint:constraint-layout:$ThirPartyLibs.constraintLayoutVersion"
+    implementation "com.android.support:appcompat-v7:$Libs.appCompatVersion"
+    implementation "com.android.support.constraint:constraint-layout:$Libs.constraintLayoutVersion"
 
-    testImplementation "junit:junit:$TestDependencies.jUnitVersion"
+    testImplementation "junit:junit:$Tests.jUnitVersion"
 
-    androidTestImplementation "com.android.support.test:runner:$TestDependencies.testRunnerVersion"
-    androidTestImplementation "com.android.support.test.espresso:espresso-core:$TestDependencies.espressoVersion"
+    androidTestImplementation "com.android.support.test:runner:$Tests.testRunnerVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$Tests.espressoVersion"
 }
