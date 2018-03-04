@@ -1,9 +1,9 @@
 package com.juange.todoprojects.presentation
 
 import android.util.Log
-import com.juange.todoprojects.domain.model.Project
-import com.juange.todoprojects.domain.usecase.GetLocalProjectsUseCase
-import com.juange.todoprojects.domain.usecase.GetProjectsUseCase
+import com.juange.todoprojects.domain.project.model.Project
+import com.juange.todoprojects.domain.project.usecase.GetLocalProjectsUseCase
+import com.juange.todoprojects.domain.project.usecase.GetProjectsUseCase
 import com.juange.todoprojects.presentation.base.BasePresenter
 import com.juange.todoprojects.presentation.base.Presenter
 import io.reactivex.observers.DisposableSingleObserver

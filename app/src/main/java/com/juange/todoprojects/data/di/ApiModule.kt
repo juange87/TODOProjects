@@ -1,9 +1,9 @@
 package com.juange.todoprojects.data.di
 
 import android.util.Base64
-import com.juange.todoprojects.data.net.api.ProjectApi
-import com.juange.todoprojects.data.net.api.ProjectApiImpl
-import com.juange.todoprojects.data.net.api.ProjectService
+import com.juange.todoprojects.data.net.project.api.ProjectApi
+import com.juange.todoprojects.data.net.project.api.ProjectApiImpl
+import com.juange.todoprojects.data.net.project.api.ProjectService
 import dagger.Module
 import dagger.Provides
 import okhttp3.Interceptor

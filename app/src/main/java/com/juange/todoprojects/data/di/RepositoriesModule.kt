@@ -1,7 +1,7 @@
 package com.juange.todoprojects.data.di
 
 import com.juange.todoprojects.data.ProjectRepositoryImpl
-import com.juange.todoprojects.domain.repository.ProjectRepository
+import com.juange.todoprojects.domain.project.repository.ProjectRepository
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

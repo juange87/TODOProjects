@@ -3,7 +3,7 @@ package com.juange.todoprojects.data.net.mapper
 import com.juange.todoprojects.data.net.mapper.TagApiModelMapperTest.Companion.FAKE_COLOR_2
 import com.juange.todoprojects.data.net.mapper.TagApiModelMapperTest.Companion.FAKE_ID_2
 import com.juange.todoprojects.data.net.mapper.TagApiModelMapperTest.Companion.FAKE_NAME_2
-import com.juange.todoprojects.data.net.model.*
+import com.juange.todoprojects.data.net.project.model.*
 import junit.framework.Assert
 import org.junit.Test
 

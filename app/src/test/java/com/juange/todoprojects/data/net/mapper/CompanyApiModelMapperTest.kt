@@ -1,7 +1,7 @@
 package com.juange.todoprojects.data.net.mapper
 
-import com.juange.todoprojects.data.net.model.CompanyApiModel
-import com.juange.todoprojects.data.net.model.mapToDomain
+import com.juange.todoprojects.data.net.project.model.CompanyApiModel
+import com.juange.todoprojects.data.net.project.model.mapToDomain
 import junit.framework.Assert
 import org.junit.Test
 

@@ -1,8 +1,8 @@
 package com.juange.todoprojects.domain.di
 
-import com.juange.todoprojects.domain.repository.ProjectRepository
-import com.juange.todoprojects.domain.usecase.GetLocalProjectsUseCase
-import com.juange.todoprojects.domain.usecase.GetProjectsUseCase
+import com.juange.todoprojects.domain.project.repository.ProjectRepository
+import com.juange.todoprojects.domain.project.usecase.GetLocalProjectsUseCase
+import com.juange.todoprojects.domain.project.usecase.GetProjectsUseCase
 import dagger.Module
 import dagger.Provides
 import javax.inject.Named

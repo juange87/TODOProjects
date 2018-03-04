@@ -3,9 +3,9 @@ package com.juange.todoprojects.dagger.component
 import com.juange.todoprojects.app.AndroidApplication
 import com.juange.todoprojects.dagger.module.ActivityModule
 import com.juange.todoprojects.dagger.module.AppModule
-import com.juange.todoprojects.data.datasource.ProjectLocalDataSource
-import com.juange.todoprojects.data.datasource.ProjectRemoteDataSource
-import com.juange.todoprojects.domain.repository.ProjectRepository
+import com.juange.todoprojects.data.datasource.project.ProjectLocalDataSource
+import com.juange.todoprojects.data.datasource.project.ProjectRemoteDataSource
+import com.juange.todoprojects.domain.project.repository.ProjectRepository
 import dagger.Component
 import javax.inject.Singleton
 

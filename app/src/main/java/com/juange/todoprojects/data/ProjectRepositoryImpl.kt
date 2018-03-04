@@ -1,13 +1,13 @@
 package com.juange.todoprojects.data
 
-import com.juange.todoprojects.data.datasource.ProjectLocalDataSource
-import com.juange.todoprojects.data.datasource.ProjectRemoteDataSource
-import com.juange.todoprojects.data.net.model.mapToDomain
+import com.juange.todoprojects.data.datasource.project.ProjectLocalDataSource
+import com.juange.todoprojects.data.datasource.project.ProjectRemoteDataSource
+import com.juange.todoprojects.data.net.project.model.mapToDomain
 import com.juange.todoprojects.data.persistence.room.model.ProjectRoomEntity
 import com.juange.todoprojects.data.persistence.room.model.mapToDomain
 import com.juange.todoprojects.data.persistence.room.model.mapToEntity
-import com.juange.todoprojects.domain.model.Project
-import com.juange.todoprojects.domain.repository.ProjectRepository
+import com.juange.todoprojects.domain.project.model.Project
+import com.juange.todoprojects.domain.project.repository.ProjectRepository
 import io.reactivex.Single
 import javax.inject.Inject
 

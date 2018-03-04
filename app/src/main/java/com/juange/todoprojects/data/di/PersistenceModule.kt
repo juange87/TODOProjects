@@ -2,9 +2,9 @@ package com.juange.todoprojects.data.di
 
 import android.arch.persistence.room.Room
 import android.content.Context
-import com.juange.todoprojects.data.persistence.ProjectStorage
-import com.juange.todoprojects.data.persistence.ProjectStorageImpl
-import com.juange.todoprojects.data.persistence.room.base.DataBase
+import com.juange.todoprojects.data.persistence.base.DataBase
+import com.juange.todoprojects.data.persistence.project.ProjectStorage
+import com.juange.todoprojects.data.persistence.project.ProjectStorageImpl
 import com.juange.todoprojects.data.persistence.room.model.ProjectRoomDao
 import dagger.Module
 import dagger.Provides
