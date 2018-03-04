@@ -1,4 +1,4 @@
-package com.juange.todoprojects.domain.task
+package com.juange.todoprojects.domain.task.model
 
 data class Task(
         val projectName: String = "",

@@ -6,10 +6,10 @@ import com.juange.todoprojects.domain.project.repository.ProjectRepository
 import io.reactivex.Single
 import javax.inject.Inject
 
-class GetProjectsUseCase @Inject constructor(private val projectRepository: ProjectRepository)
+class GetProjectsUseCase @Inject constructor(private val repository: ProjectRepository)
     : SingleUseCase<List<Project>>() {
 
     override fun buildUseCaseObservable(): Single<List<Project>> {
-        return projectRepository.getProjects()
+        return repository.getProjects()
     }
 }

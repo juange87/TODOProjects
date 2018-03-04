@@ -8,7 +8,7 @@ import com.juange.todoprojects.data.datasource.project.ProjectRemoteDataSource
 import com.juange.todoprojects.data.datasource.task.TaskLocalDataSource
 import com.juange.todoprojects.data.datasource.task.TaskRemoteDataSource
 import com.juange.todoprojects.domain.project.repository.ProjectRepository
-import com.juange.todoprojects.domain.task.TaskRepository
+import com.juange.todoprojects.domain.task.repository.TaskRepository
 import dagger.Component
 import javax.inject.Singleton
 

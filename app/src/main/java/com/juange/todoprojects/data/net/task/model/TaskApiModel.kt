@@ -1,7 +1,7 @@
 package com.juange.todoprojects.data.net.task.model
 
 import com.google.gson.annotations.SerializedName
-import com.juange.todoprojects.domain.task.Task
+import com.juange.todoprojects.domain.task.model.Task
 
 data class TaskApiModel(
         @SerializedName("project-name")

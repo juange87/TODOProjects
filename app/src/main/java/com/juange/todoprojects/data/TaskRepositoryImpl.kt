@@ -5,8 +5,8 @@ import com.juange.todoprojects.data.datasource.task.TaskRemoteDataSource
 import com.juange.todoprojects.data.net.task.model.mapToDomain
 import com.juange.todoprojects.data.persistence.task.model.mapToDomain
 import com.juange.todoprojects.data.persistence.task.model.maptToEntity
-import com.juange.todoprojects.domain.task.Task
-import com.juange.todoprojects.domain.task.TaskRepository
+import com.juange.todoprojects.domain.task.model.Task
+import com.juange.todoprojects.domain.task.repository.TaskRepository
 import io.reactivex.Single
 import javax.inject.Inject
 
@@ -18,6 +18,11 @@ class TaskRepositoryImpl @Inject constructor(
         return remote.getTasksByProject(projectId)
                 .map { it.mapToDomain() }
                 .flatMap { storeTasks(it) }
+    }
+
+    override fun getLocalTasksByProject(projectId: Int): Single<List<Task>> {
+        return local.getTasksByProject(projectId)
+                .map { it.mapToDomain() }
     }
 
     override fun storeTasks(tasks: List<Task>): Single<List<Task>> {

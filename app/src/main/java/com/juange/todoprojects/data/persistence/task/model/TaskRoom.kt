@@ -2,7 +2,7 @@ package com.juange.todoprojects.data.persistence.task.model
 
 import android.arch.persistence.room.*
 import com.juange.todoprojects.data.persistence.room.model.ProjectRoomEntity
-import com.juange.todoprojects.domain.task.Task
+import com.juange.todoprojects.domain.task.model.Task
 
 @Entity(tableName = "task", foreignKeys = arrayOf(ForeignKey(entity = ProjectRoomEntity::class, parentColumns = arrayOf("id"), childColumns = arrayOf("project_id"), onDelete = ForeignKey.CASCADE)))
 data class TaskRoomEntity(

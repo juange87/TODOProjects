@@ -29,17 +29,3 @@ data class Project(
         val startDate: String = "",
         val status: String = "")
 
-data class Company(
-        val isOwner: String = "",
-        val name: String = "",
-        val id: String = "")
-
-data class Category(
-        val color: String = "",
-        val name: String = "",
-        val id: String = "")
-
-data class Tag(
-        val color: String = "",
-        val name: String = "",
-        val id: String = "")
