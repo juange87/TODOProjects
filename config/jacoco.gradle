@@ -37,6 +37,7 @@ project.afterEvaluate {
                                 '**/*Activity*',
                                 '**/*Adapter*',
                                 '**/*Fragment*',
+                                '**/*_Factory*',
                                 '**/*ViewHolder*',
                                 '**/*View*',
                                 '**/R.class',
@@ -46,7 +47,7 @@ project.afterEvaluate {
 
                 classDirectories = fileTree(dir: "${project.buildDir}/intermediates/classes/${sourcePath}",
                         excludes: excludes
-                ) + fileTree(dir: "${project.buildDir}/tmp/kotlin-classes/alphaDebug/", excludes: excludes)
+                ) + fileTree(dir: "${project.buildDir}/tmp/kotlin-classes/debug/", excludes: excludes)
 
                 def coverageSourceDirs = ["src/main/java",
                                           "src/$productFlavorName/java",
