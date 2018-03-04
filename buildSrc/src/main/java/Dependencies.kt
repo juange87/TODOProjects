@@ -35,6 +35,8 @@ object Libs {
 object Tests {
     //UNIT TESTS
     val jUnitVersion = "4.12"
+    val mockitoVersion = "2.11.0"
+    val mockkVersion = "1.7.9"
 
     //ANDROID TESTS
     val testRunnerVersion = "1.0.1"
