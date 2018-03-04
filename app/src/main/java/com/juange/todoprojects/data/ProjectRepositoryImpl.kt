@@ -11,9 +11,6 @@ import com.juange.todoprojects.domain.project.repository.ProjectRepository
 import io.reactivex.Single
 import javax.inject.Inject
 
-/**
- * I hate the "Impl" in class name
- */
 class ProjectRepositoryImpl @Inject constructor(
         private val local: ProjectLocalDataSource,
         private val remote: ProjectRemoteDataSource) : ProjectRepository {
