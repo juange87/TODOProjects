@@ -12,7 +12,7 @@ data class CategoryRoomEntity(
         @ColumnInfo(name = "category_name") var name: String = ""
 )
 
-fun CategoryRoomEntity.mapper(): Category {
+fun CategoryRoomEntity.mapToDomain(): Category {
     return Category(
             color = this.color,
             name = this.name,
@@ -20,9 +20,9 @@ fun CategoryRoomEntity.mapper(): Category {
     )
 }
 
-fun Collection<CategoryRoomEntity>.mapper(): List<Category> = this.map { it.mapper() }
+fun Collection<CategoryRoomEntity>.mapToDomain(): List<Category> = this.map { it.mapToDomain() }
 
-fun Category.mapper(): CategoryRoomEntity {
+fun Category.mapToEntity(): CategoryRoomEntity {
     return CategoryRoomEntity(
             color = this.color,
             name = this.name,
@@ -30,4 +30,4 @@ fun Category.mapper(): CategoryRoomEntity {
     )
 }
 
-fun List<Category>.mapper(): List<CategoryRoomEntity> = this.map { it.mapper() }
+fun List<Category>.mapToEntity(): List<CategoryRoomEntity> = this.map { it.mapToEntity() }

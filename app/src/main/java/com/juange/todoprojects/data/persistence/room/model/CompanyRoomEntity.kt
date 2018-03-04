@@ -12,7 +12,7 @@ data class CompanyRoomEntity(
         @ColumnInfo(name = "company_name") var name: String = ""
 )
 
-fun CompanyRoomEntity.mapper(): Company {
+fun CompanyRoomEntity.mapToDomain(): Company {
     return Company(
             isOwner = this.owner,
             name = this.name,
@@ -20,9 +20,9 @@ fun CompanyRoomEntity.mapper(): Company {
     )
 }
 
-fun Collection<CompanyRoomEntity>.mapper(): List<Company> = this.map { it.mapper() }
+fun Collection<CompanyRoomEntity>.mapToDomain(): List<Company> = this.map { it.mapToDomain() }
 
-fun Company.mapper(): CompanyRoomEntity {
+fun Company.mapToEntity(): CompanyRoomEntity {
     return CompanyRoomEntity(
             owner = this.isOwner,
             name = this.name,
@@ -30,4 +30,4 @@ fun Company.mapper(): CompanyRoomEntity {
     )
 }
 
-fun List<Company>.mapper(): List<CompanyRoomEntity> = this.map { it.mapper() }
+fun List<Company>.mapToEntity(): List<CompanyRoomEntity> = this.map { it.mapToEntity() }

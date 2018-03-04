@@ -3,34 +3,16 @@ package com.juange.todoprojects.data.net.mapper
 import com.juange.todoprojects.data.net.mapper.TagApiModelMapperTest.Companion.FAKE_COLOR_2
 import com.juange.todoprojects.data.net.mapper.TagApiModelMapperTest.Companion.FAKE_ID_2
 import com.juange.todoprojects.data.net.mapper.TagApiModelMapperTest.Companion.FAKE_NAME_2
-import com.juange.todoprojects.data.net.model.CategoryApiModel
-import com.juange.todoprojects.data.net.model.CompanyApiModel
-import com.juange.todoprojects.data.net.model.ProjectApiModel
-import com.juange.todoprojects.data.net.model.TagApiModel
-import com.juange.todoprojects.domain.model.Project
+import com.juange.todoprojects.data.net.model.*
 import junit.framework.Assert
-import org.junit.After
-import org.junit.Before
 import org.junit.Test
 
 class ProjectApiModelMapperTest {
 
-    private var mapper: ProjectApiModelMapper? = null
-
-    @Before
-    fun setUp() {
-        mapper = ProjectApiModelMapper(CompanyApiModelMapper(), TagApiModelMapper(), CategoryApiModelMapper())
-    }
-
-    @After
-    fun tearDown() {
-        mapper = null
-    }
-
     @Test
     fun testMapObject() {
         val fakeProject = createFakeProject()
-        val mapToDomain = mapper!!.mapToDomain(fakeProject)
+        val mapToDomain = fakeProject.mapToDomain()
 
         Assert.assertNotNull(mapToDomain)
         Assert.assertEquals("339988", mapToDomain.id)
@@ -38,17 +20,9 @@ class ProjectApiModelMapperTest {
     }
 
     @Test
-    fun testMapNullObject() {
-        val mapToDomain = mapper!!.mapToDomain(null)
-
-        Assert.assertNotNull(mapToDomain)
-        Assert.assertEquals(Project(), mapToDomain)
-    }
-
-    @Test
     fun testMapList() {
         val fakeProjects = createFakeProjectList()
-        val mapToDomain = mapper!!.mapListToDomain(fakeProjects)
+        val mapToDomain = fakeProjects.mapToDomain()
 
         Assert.assertNotNull(mapToDomain)
         Assert.assertTrue(mapToDomain.size == 4)
@@ -56,14 +30,6 @@ class ProjectApiModelMapperTest {
 
     private fun createFakeProjectList(): List<ProjectApiModel> {
         return listOf(createFakeProject(), createFakeProject(), createFakeProject(), createFakeProject())
-    }
-
-    @Test
-    fun testMapNullList() {
-        val mapToDomain = mapper!!.mapListToDomain(null)
-
-        Assert.assertNotNull(mapToDomain)
-        Assert.assertTrue(mapToDomain.isEmpty())
     }
 
     private fun createFakeProject(): ProjectApiModel {

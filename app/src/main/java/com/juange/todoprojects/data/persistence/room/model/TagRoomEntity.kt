@@ -12,7 +12,7 @@ data class TagRoomEntity(
         @ColumnInfo(name = "tag_name") var name: String = ""
 )
 
-fun TagRoomEntity.mapper(): Tag {
+fun TagRoomEntity.mapToDomain(): Tag {
     return Tag(
             color = this.color,
             name = this.name,
@@ -20,9 +20,9 @@ fun TagRoomEntity.mapper(): Tag {
     )
 }
 
-fun Collection<TagRoomEntity>.mapper(): List<Tag> = this.map { it.mapper() }
+fun Collection<TagRoomEntity>.mapToDomain(): List<Tag> = this.map { it.mapToDomain() }
 
-fun Tag.mapper(): TagRoomEntity {
+fun Tag.mapToEntity(): TagRoomEntity {
     return TagRoomEntity(
             color = this.color,
             name = this.name,
@@ -30,4 +30,4 @@ fun Tag.mapper(): TagRoomEntity {
     )
 }
 
-fun List<Tag>.mapper(): List<TagRoomEntity> = this.map { it.mapper() }
+fun List<Tag>.mapToEntity(): List<TagRoomEntity> = this.map { it.mapToEntity() }

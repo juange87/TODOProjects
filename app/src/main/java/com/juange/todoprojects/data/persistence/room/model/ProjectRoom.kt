@@ -49,7 +49,7 @@ interface ProjectRoomDao {
     fun deleteAll()
 }
 
-fun ProjectRoomEntity.mapper(): Project {
+fun ProjectRoomEntity.mapToDomain(): Project {
     return Project(
             replyByEmailEnabled = this.replyByEmailEnabled,
             endDate = this.endDate,
@@ -59,7 +59,7 @@ fun ProjectRoomEntity.mapper(): Project {
             overviewStartPage = this.overviewStartPage,
             starred = this.starred,
             logo = this.logo,
-            company = this.company.mapper(),
+            company = this.company.mapToDomain(),
             id = this.id,
             announcement = this.announcement,
             tasksStartPage = this.tasksStartPage,
@@ -67,7 +67,7 @@ fun ProjectRoomEntity.mapper(): Project {
             notifyEveryone = this.notifyEveryone,
             filesAutoNewVersion = this.filesAutoNewVersion,
             subStatus = this.subStatus,
-            tags = this.tags?.mapper(),
+            tags = this.tags?.mapToDomain(),
             privacyEnabled = this.privacyEnabled,
             isProjectAdmin = this.isProjectAdmin,
             defaultPrivacy = this.defaultPrivacy,
@@ -75,14 +75,14 @@ fun ProjectRoomEntity.mapper(): Project {
             name = this.name,
             showAnnouncement = this.showAnnouncement,
             harvestTimersEnabled = this.harvestTimersEnabled,
-            category = this.category.mapper(),
+            category = this.category.mapToDomain(),
             startDate = this.startDate,
             status = this.status)
 }
 
-fun Collection<ProjectRoomEntity>.mapper(): List<Project> = this.map { it.mapper() }
+fun Collection<ProjectRoomEntity>.mapToDomain(): List<Project> = this.map { it.mapToDomain() }
 
-fun Project.mapper(): ProjectRoomEntity {
+fun Project.mapToEntity(): ProjectRoomEntity {
     return ProjectRoomEntity(
             replyByEmailEnabled = this.replyByEmailEnabled,
             endDate = this.endDate,
@@ -92,7 +92,7 @@ fun Project.mapper(): ProjectRoomEntity {
             overviewStartPage = this.overviewStartPage,
             starred = this.starred,
             logo = this.logo,
-            company = this.company.mapper(),
+            company = this.company.mapToEntity(),
             id = this.id,
             announcement = this.announcement,
             tasksStartPage = this.tasksStartPage,
@@ -100,7 +100,7 @@ fun Project.mapper(): ProjectRoomEntity {
             notifyEveryone = this.notifyEveryone,
             filesAutoNewVersion = this.filesAutoNewVersion,
             subStatus = this.subStatus,
-            tags = this.tags?.mapper(),
+            tags = this.tags?.mapToEntity(),
             privacyEnabled = this.privacyEnabled,
             isProjectAdmin = this.isProjectAdmin,
             defaultPrivacy = this.defaultPrivacy,
@@ -108,9 +108,9 @@ fun Project.mapper(): ProjectRoomEntity {
             name = this.name,
             showAnnouncement = this.showAnnouncement,
             harvestTimersEnabled = this.harvestTimersEnabled,
-            category = this.category.mapper(),
+            category = this.category.mapToEntity(),
             startDate = this.startDate,
             status = this.status)
 }
 
-fun List<Project>.mapper(): List<ProjectRoomEntity> = this.map { it.mapper() }
+fun List<Project>.mapToEntity(): List<ProjectRoomEntity> = this.map { it.mapToEntity() }
