@@ -4,5 +4,5 @@ import com.juange.todoprojects.data.net.task.model.TaskApiModel
 import io.reactivex.Single
 
 interface TaskApi {
-    fun getTasksByProject(projectId: String): Single<List<TaskApiModel>>
+    fun getTasksByProject(projectId: Int): Single<List<TaskApiModel>>
 }

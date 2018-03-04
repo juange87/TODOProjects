@@ -6,6 +6,9 @@ import com.juange.todoprojects.data.persistence.base.DataBase
 import com.juange.todoprojects.data.persistence.project.ProjectStorage
 import com.juange.todoprojects.data.persistence.project.ProjectStorageImpl
 import com.juange.todoprojects.data.persistence.room.model.ProjectRoomDao
+import com.juange.todoprojects.data.persistence.task.TaskStorage
+import com.juange.todoprojects.data.persistence.task.TaskStorageImpl
+import com.juange.todoprojects.data.persistence.task.model.TaskRoomDao
 import dagger.Module
 import dagger.Provides
 import javax.inject.Named
@@ -16,10 +19,6 @@ class PersistenceModule {
 
     @Provides
     @Singleton
-    fun provideProjectStorage(storage: ProjectStorageImpl): ProjectStorage = storage
-
-    @Provides
-    @Singleton
     @Named(DATABASE)
     fun provideDataBase(context: Context): DataBase {
         return Room.databaseBuilder(context.applicationContext, DataBase::class.java, "project_room").build()
@@ -27,8 +26,22 @@ class PersistenceModule {
 
     @Provides
     @Singleton
+    fun provideProjectStorage(storage: ProjectStorageImpl): ProjectStorage = storage
+
+    @Provides
+    @Singleton
+    fun provideTaskStorage(storage: TaskStorageImpl): TaskStorage = storage
+
+    @Provides
+    @Singleton
     fun provideProjectRoomDao(@Named(DATABASE) dataBase: DataBase): ProjectRoomDao {
         return dataBase.projectRoomDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideTaskRoomDao(@Named(DATABASE) dataBase: DataBase): TaskRoomDao {
+        return dataBase.taskRoomDao()
     }
 
     companion object {

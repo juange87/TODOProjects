@@ -8,5 +8,5 @@ import retrofit2.http.Path
 interface TaskService {
 
     @GET("projects/{project_id}/tasks.json")
-    fun getTasksByProject(@Path("project_id") project_id: String): Call<TaskApiModelResponse>
+    fun getTasksByProject(@Path("project_id") projectId: Int): Call<TaskApiModelResponse>
 }

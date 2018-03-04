@@ -20,7 +20,7 @@ class TaskApiImpl @Inject constructor(
         @Named(ApiModule.TASK_SERVICE) private val service: TaskService,
         private val connectivityManager: NetConnectivityManager) : TaskApi {
 
-    override   fun getTasksByProject(projectId: String): Single<List<TaskApiModel>> {
+    override   fun getTasksByProject(projectId: Int): Single<List<TaskApiModel>> {
         return Single.create({
             if (!it.isDisposed) {
                 if (connectivityManager.internetConnectionAvailable()) {
