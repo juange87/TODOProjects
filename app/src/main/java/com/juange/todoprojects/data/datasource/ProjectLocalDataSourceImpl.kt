@@ -1,12 +1,17 @@
 package com.juange.todoprojects.data.datasource
 
-import com.juange.todoprojects.domain.model.Project
+import com.juange.todoprojects.data.persistence.ProjectStorage
+import com.juange.todoprojects.data.persistence.room.model.ProjectRoomEntity
 import io.reactivex.Single
 import javax.inject.Inject
 
-class ProjectLocalDataSourceImpl @Inject constructor() : ProjectLocalDataSource {
+class ProjectLocalDataSourceImpl @Inject constructor(private val storage: ProjectStorage) : ProjectLocalDataSource {
 
-    override fun getProjects(): Single<List<Project>> {
-        return Single.just(emptyList())
+    override fun getProjects(): Single<List<ProjectRoomEntity>> {
+        return storage.getProjects()
+    }
+
+    override fun storeProjects(projects: List<ProjectRoomEntity>): Single<List<ProjectRoomEntity>> {
+        return storage.storeProjects(projects)
     }
 }

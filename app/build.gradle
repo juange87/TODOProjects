@@ -49,7 +49,7 @@ dependencies {
     //ROOM
     implementation "android.arch.persistence.room:runtime:$Libs.roomVersion"
     implementation "android.arch.persistence.room:rxjava2:$Libs.roomVersion"
-    annotationProcessor "android.arch.persistence.room:compiler:$Libs.roomVersion"
+    kapt "android.arch.persistence.room:compiler:$Libs.roomVersion"
 
     //NET
     implementation "com.squareup.retrofit2:retrofit:$Libs.retrofitVersion"

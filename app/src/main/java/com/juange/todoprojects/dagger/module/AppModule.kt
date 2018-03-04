@@ -4,6 +4,7 @@ import android.content.Context
 import com.juange.todoprojects.app.AndroidApplication
 import com.juange.todoprojects.data.di.ApiModule
 import com.juange.todoprojects.data.di.DataSourceModule
+import com.juange.todoprojects.data.di.PersistenceModule
 import com.juange.todoprojects.data.di.RepositoriesModule
 import dagger.Module
 import dagger.Provides
@@ -13,7 +14,8 @@ import javax.inject.Singleton
         includes = arrayOf(
                 RepositoriesModule::class,
                 DataSourceModule::class,
-                ApiModule::class
+                ApiModule::class,
+                PersistenceModule::class
         )
 )
 class AppModule(private val application: AndroidApplication) {

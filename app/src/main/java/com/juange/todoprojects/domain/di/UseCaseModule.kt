@@ -1,6 +1,7 @@
 package com.juange.todoprojects.domain.di
 
 import com.juange.todoprojects.domain.repository.ProjectRepository
+import com.juange.todoprojects.domain.usecase.GetLocalProjectsUseCase
 import com.juange.todoprojects.domain.usecase.GetProjectsUseCase
 import dagger.Module
 import dagger.Provides
@@ -13,4 +14,9 @@ class UseCaseModule {
     @Named("getProjectsUseCase")
     internal fun provideGetProjectsUseCase(projectRepository: ProjectRepository): GetProjectsUseCase
             = GetProjectsUseCase(projectRepository)
+
+    @Provides
+    @Named("getLocalProjectsUseCase")
+    internal fun provideGetLocalProjectsUseCase(projectRepository: ProjectRepository): GetLocalProjectsUseCase
+            = GetLocalProjectsUseCase(projectRepository)
 }
