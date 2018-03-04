@@ -4,6 +4,9 @@ import android.util.Base64
 import com.juange.todoprojects.data.net.project.api.ProjectApi
 import com.juange.todoprojects.data.net.project.api.ProjectApiImpl
 import com.juange.todoprojects.data.net.project.api.ProjectService
+import com.juange.todoprojects.data.net.task.api.TaskApi
+import com.juange.todoprojects.data.net.task.api.TaskApiImpl
+import com.juange.todoprojects.data.net.task.api.TaskService
 import dagger.Module
 import dagger.Provides
 import okhttp3.Interceptor
@@ -19,6 +22,10 @@ class ApiModule {
     @Provides
     @Singleton
     fun provideProjectApi(api: ProjectApiImpl): ProjectApi = api
+
+    @Provides
+    @Singleton
+    fun provideTaskApi(api: TaskApiImpl): TaskApi = api
 
     @Provides
     @Named(Companion.ENDPOINT)
@@ -45,7 +52,7 @@ class ApiModule {
             @Named(Companion.API_PASSWORD) password: String
     ): String {
         val toByteArray = "$token:$password".toByteArray()
-        val base64 = Base64.encodeToString(toByteArray,  Base64.DEFAULT).replace("\n", "");
+        val base64 = Base64.encodeToString(toByteArray, Base64.DEFAULT).replace("\n", "");
         return "Basic $base64"
     }
 
@@ -97,6 +104,12 @@ class ApiModule {
         return retrofit.create(ProjectService::class.java)
     }
 
+    @Provides
+    @Named(Companion.TASK_SERVICE)
+    fun provideTaskService(@Named(Companion.RETROFIT_CLIENT) retrofit: Retrofit): TaskService {
+        return retrofit.create(TaskService::class.java)
+    }
+
     companion object {
         const val ENDPOINT = "endpoint"
         const val RETROFIT_CLIENT = "retrofit_client"
@@ -107,5 +120,6 @@ class ApiModule {
         const val API_AUTH = "api_auth"
         const val INTERCEPTOR = "interceptor"
         const val PROJECT_SERVICE = "project_service"
+        const val TASK_SERVICE = "task_service"
     }
 }
