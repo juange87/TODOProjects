@@ -77,6 +77,7 @@ dependencies {
     testImplementation "junit:junit:$Tests.jUnitVersion"
     testImplementation "org.mockito:mockito-core:$Tests.mockitoVersion"
     testImplementation "io.mockk:mockk:$Tests.mockkVersion"
+    testImplementation "com.squareup.okhttp3:mockwebserver:$Libs.okhttpVersion"
 
     androidTestImplementation "com.android.support.test:runner:$Tests.testRunnerVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$Tests.espressoVersion"

@@ -37,7 +37,7 @@ class MainPresenterTest {
     }
 
     @Test
-    fun testProof() {
+    fun testInit() {
         presenter.init()
 
         verify { ui.showMessage() }
