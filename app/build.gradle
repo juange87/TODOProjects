@@ -54,6 +54,9 @@ dependencies {
     //ANDROID
     implementation "com.android.support:appcompat-v7:$Libs.appCompatVersion"
     implementation "com.android.support.constraint:constraint-layout:$Libs.constraintLayoutVersion"
+    implementation "com.android.support:recyclerview-v7:$Libs.appCompatVersion"
+    implementation "com.android.support:cardview-v7:$Libs.appCompatVersion"
+    implementation "com.android.support:design:$Libs.appCompatVersion"
 
     //DAGGER
     implementation "com.google.dagger:dagger:$Libs.daggerVersion"
