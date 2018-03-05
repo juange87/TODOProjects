@@ -36,7 +36,7 @@ class ApiModule {
     @Provides
     @Named(Companion.API_TOKEN)
     fun provideApiToken(): String {
-        return "twp_TEbBXGCnvl2HfvXWfkLUlzx92e3T"
+        return "twp_0wP7w7u8hog5lZMg3L8wBDMVCuxo"
     }
 
     @Provides
