@@ -6,7 +6,8 @@ object ProjectVersion {
 object Core {
     val applicationId = "com.juange.todoprojects"
 
-    val testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
+    val testInstrumentationRunner = "com.juange.todoprojects.ScreenshotTestRunner"
+    val testApplicationId = "com.juange.todoprojects.test"
 
     val buildToolsVersion = "26.0.2"
     val minSdkVersion = 21
@@ -41,4 +42,5 @@ object Tests {
     //ANDROID TESTS
     val testRunnerVersion = "1.0.1"
     val espressoVersion = "3.0.1"
+    val testRulesVersion = "1.0.1"
 }

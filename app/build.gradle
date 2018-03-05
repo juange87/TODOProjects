@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'shot'
 
 apply from: "../config/jacoco.gradle"
 
@@ -14,6 +15,7 @@ android {
         versionCode ProjectVersion.code
         versionName "$ProjectVersion.name"
         testInstrumentationRunner "$Core.testInstrumentationRunner"
+        testApplicationId Core.testApplicationId
     }
 
     sourceSets {
@@ -39,6 +41,12 @@ android {
             showStandardStreams = true
         }
     }
+}
+
+shot {
+    appId = "$Core.applicationId"
+    instrumentationTestTask = 'connectedDebugAndroidTest'
+    packageTestApkTask = 'packageDebugAndroidTest'
 }
 
 kapt {
@@ -84,6 +92,12 @@ dependencies {
 
     androidTestImplementation "com.android.support.test:runner:$Tests.testRunnerVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$Tests.espressoVersion"
+    androidTestImplementation("com.android.support.test:rules:$Tests.testRulesVersion") {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestImplementation("com.android.support.test.espresso:espresso-intents:$Tests.espressoVersion") {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
 }
 
 gradle.projectsEvaluated {
