@@ -1,4 +1,4 @@
-package com.juange.todoprojects.data
+package com.juange.todoprojects.data.repository.project
 
 import com.juange.todoprojects.data.datasource.project.ProjectLocalDataSource
 import com.juange.todoprojects.data.datasource.project.ProjectRemoteDataSource

@@ -1,4 +1,4 @@
-package com.juange.todoprojects.data
+package com.juange.todoprojects.data.repository.task
 
 import com.juange.todoprojects.data.datasource.task.TaskLocalDataSource
 import com.juange.todoprojects.data.datasource.task.TaskRemoteDataSource

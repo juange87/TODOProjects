@@ -8,7 +8,6 @@ import io.reactivex.observers.TestObserver
 import junit.framework.Assert
 import org.junit.Test
 
-
 class TaskApiTest : BaseApiTest() {
 
     private lateinit var api: TaskApiImpl
