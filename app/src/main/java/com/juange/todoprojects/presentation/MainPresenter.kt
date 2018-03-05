@@ -22,7 +22,10 @@ class MainPresenter @Inject constructor(
     private lateinit var ui: MainPresenterContractView
 
     interface MainPresenterContractView : Presenter.View {
-        fun showMessage()
+        fun showErrorMessage()
+        fun loadProjects(projects: List<Project>)
+        fun showLoading()
+        fun hideLoading()
     }
 
     override fun attachView(view: MainPresenterContractView) {
@@ -30,7 +33,7 @@ class MainPresenter @Inject constructor(
     }
 
     override fun init() {
-        ui.showMessage()
+        ui.showLoading()
 
         getLocalProjects()
     }
@@ -39,34 +42,35 @@ class MainPresenter @Inject constructor(
         getLocalProjectsUseCase.execute(observer = object : DisposableSingleObserver<List<Project>>() {
 
             override fun onSuccess(todos: List<Project>) {
-                // work with the resulting todos
                 Log.d("TODOPROJECT", "LOCAL LIST: " + todos.toString())
 
                 manageResult(todos)
             }
 
             override fun onError(e: Throwable) {
+                ui.hideLoading()
                 Log.d("TODOPROJECT", "LOCALERROR: " + e.toString())
             }
         })
     }
 
     private fun manageResult(projects: List<Project>) {
-        if (projects.isEmpty()) {
-            getRemoteProjects()
+        if (!projects.isEmpty()) {
+            ui.loadProjects(projects)
         }
+        getRemoteProjects()
     }
 
     private fun getRemoteProjects() {
         getProjectsUseCase.execute(observer = object : DisposableSingleObserver<List<Project>>() {
 
             override fun onSuccess(projects: List<Project>) {
-                // work with the resulting todos
                 Log.d("TODOPROJECT", "REMOTE LIST: " + projects.toString())
                 manageGetRemoteProjects(projects)
             }
 
             override fun onError(e: Throwable) {
+                ui.hideLoading()
                 Log.d("TODOPROJECT", "REMOTEERROR: " + e.toString())
             }
         })
@@ -74,7 +78,9 @@ class MainPresenter @Inject constructor(
 
     private fun manageGetRemoteProjects(projects: List<Project>) {
         if (!projects.isEmpty()) {
-            getLocalTasksForProject(projects[0].id.toInt())
+            ui.hideLoading()
+            ui.loadProjects(projects)
+           // getLocalTasksForProject(projects[0].id.toInt())
         }
     }
 
@@ -83,9 +89,8 @@ class MainPresenter @Inject constructor(
         getLocalTaskByProjectUseCase.execute(observer = object : DisposableSingleObserver<List<Task>>() {
 
             override fun onSuccess(tasks: List<Task>) {
-                // work with the resulting todos
                 Log.d("TODOPROJECT", "LOCAL TASKS LIST: " + tasks.toString())
-                getRemoteTasks()
+                //getRemoteTasks()
             }
 
             override fun onError(e: Throwable) {
@@ -98,7 +103,6 @@ class MainPresenter @Inject constructor(
         getTasksUseCase.execute(observer = object : DisposableSingleObserver<List<Task>>() {
 
             override fun onSuccess(tasks: List<Task>) {
-                // work with the resulting todos
                 Log.d("TODOPROJECT", "REMOTE TASK LIST: " + tasks.toString())
             }
 
@@ -113,5 +117,11 @@ class MainPresenter @Inject constructor(
         getLocalProjectsUseCase.disposeStreams()
         getLocalTaskByProjectUseCase.disposeStreams()
         getTasksUseCase.disposeStreams()
+    }
+
+    fun onRefreshProjects() {
+        ui.showLoading()
+
+        getRemoteProjects()
     }
 }

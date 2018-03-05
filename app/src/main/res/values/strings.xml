@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">TODOProjects</string>
+    <string name="app_name">TODO Projects</string>
+    <string name="project_fragment_title">Projects</string>
+    <string name="action_back">Back</string>
+    <string name="project_starred_content_description">Starred</string>
+    <string name="error_happened">Opsss! Error happened!</string>
+
 </resources>

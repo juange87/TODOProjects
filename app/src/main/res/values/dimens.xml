@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="app_bar_elevation">2dp</dimen>
+    <dimen name="card_corner_radius">2dp</dimen>
+    <dimen name="card_elevation">1dp</dimen>
+    <dimen name="card_max_elevation">2dp</dimen>
+    <dimen name="project_name_text_size">20sp</dimen>
+    <dimen name="project_owner_text_size">16sp</dimen>
+    <dimen name="project_period_text_size">10sp</dimen>
+    <dimen name="project_description_text_size">12sp</dimen>
+    <dimen name="card_margin">6dp</dimen>
+    <dimen name="project_row_star_size">40dp</dimen>
+    <dimen name="card_view_padding">4dp</dimen>
+    <dimen name="separator_margin_top">4dp</dimen>
+    <dimen name="separator_margin_bottom">10dp</dimen>
+</resources>

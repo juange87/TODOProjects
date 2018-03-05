@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    android:id="@+id/card_view"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/card_margin"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?selectableItemBackground"
+    card_view:cardCornerRadius="@dimen/card_corner_radius"
+    card_view:cardElevation="@dimen/card_elevation"
+    card_view:cardMaxElevation="@dimen/card_max_elevation">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/card_view_padding">
+
+        <TextView
+            android:id="@+id/project_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/starred"
+            android:layout_alignTop="@+id/starred"
+            android:layout_gravity="center"
+            android:layout_toStartOf="@+id/starred"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="start|center_vertical"
+            android:padding="2dp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/project_name_text_size"
+            tools:text="Project" />
+
+        <ImageView
+            android:id="@+id/starred"
+            android:layout_width="@dimen/project_row_star_size"
+            android:layout_height="@dimen/project_row_star_size"
+            android:layout_alignParentEnd="true"
+            android:contentDescription="@string/project_starred_content_description"
+            android:src="@android:drawable/btn_star_big_off" />
+
+        <TextView
+            android:id="@+id/company"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/project_name"
+            android:layout_gravity="center"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="start"
+            android:padding="2dp"
+            android:textColor="@color/cool_grey"
+            android:textSize="@dimen/project_owner_text_size"
+            tools:text="Project" />
+
+        <View
+            android:id="@+id/separator"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/company"
+            android:layout_marginBottom="@dimen/separator_margin_bottom"
+            android:layout_marginTop="@dimen/separator_margin_top"
+            android:background="@color/dark_grey" />
+
+        <TextView
+            android:id="@+id/period"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/separator"
+            android:layout_gravity="center"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="end"
+            android:padding="4dp"
+            android:textColor="@color/cool_grey"
+            android:textSize="@dimen/project_period_text_size"
+            tools:text="Project" />
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/period"
+            android:layout_gravity="center"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="start"
+            android:padding="8dp"
+            android:textColor="@color/cool_grey"
+            android:textSize="@dimen/project_description_text_size"
+            tools:text="Project Description Project Description Project Description Project Description Project Description" />
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

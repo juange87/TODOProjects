@@ -1,19 +1,27 @@
 package com.juange.todoprojects.view.fragment
 
 import android.os.Bundle
+import android.support.design.widget.Snackbar
+import android.support.v4.widget.SwipeRefreshLayout
+import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.juange.todoprojects.R
 import com.juange.todoprojects.dagger.component.FragmentComponent
+import com.juange.todoprojects.domain.project.model.Project
 import com.juange.todoprojects.presentation.MainPresenter
+import com.juange.todoprojects.view.adapter.ProjectAdapter
 import kotlinx.android.synthetic.main.fragment_main.*
 import javax.inject.Inject
 
-class MainFragment : BaseFragment(), MainPresenter.MainPresenterContractView {
+class MainFragment : BaseFragment(), MainPresenter.MainPresenterContractView, SwipeRefreshLayout.OnRefreshListener {
 
     @Inject
     lateinit var presenter: MainPresenter
+
+    private lateinit var adapter: ProjectAdapter
 
     override fun doInjection(fragmentComponent: FragmentComponent) {
         fragmentComponent.inject(this)
@@ -21,6 +29,21 @@ class MainFragment : BaseFragment(), MainPresenter.MainPresenterContractView {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? =
             inflater?.inflate(R.layout.fragment_main, container, false)
+
+
+    override fun onInitView() {
+        initToolbar(toolbar = toolbar)
+
+        val layoutManager: RecyclerView.LayoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager
+                .VERTICAL)
+        recycler.layoutManager = layoutManager
+//        adapter = ProjectAdapter(emptyList())
+        recycler.adapter = ProjectAdapter(emptyList())
+
+        swipe_refresh.setOnRefreshListener(this)
+        swipe_refresh.isSoundEffectsEnabled = true
+        swipe_refresh.setColorSchemeResources(R.color.green, R.color.dark_grey, R.color.cool_grey)
+    }
 
     override fun onViewReady() {
         presenter.attachView(this)
@@ -31,7 +54,25 @@ class MainFragment : BaseFragment(), MainPresenter.MainPresenterContractView {
         presenter.detachView()
     }
 
-    override fun showMessage() {
-        text_view_main.text = "HOLA A TODOS 2"
+    override fun onRefresh() {
+        presenter.onRefreshProjects()
+    }
+
+    override fun showErrorMessage() {
+        view?.let {
+            Snackbar.make(it, getString(R.string.error_happened), Snackbar.LENGTH_LONG)
+        }
+    }
+
+    override fun loadProjects(projects: List<Project>) {
+        recycler.swapAdapter(ProjectAdapter(projects), false)
+    }
+
+    override fun showLoading() {
+        swipe_refresh.isRefreshing = true
+    }
+
+    override fun hideLoading() {
+        swipe_refresh.isRefreshing = false
     }
 }

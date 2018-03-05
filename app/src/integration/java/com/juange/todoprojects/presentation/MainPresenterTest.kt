@@ -40,6 +40,6 @@ class MainPresenterTest {
     fun testInit() {
         presenter.init()
 
-        verify { ui.showMessage() }
+        verify { ui.showErrorMessage() }
     }
 }
