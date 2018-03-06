@@ -5,4 +5,7 @@
     <string name="project_starred_content_description">Starred</string>
     <string name="error_happened">Opsss! Error happened!</string>
 
+    <string name="task_fragment_title">Tasks</string>
+    <string name="task_avatar_content_description">Avatar</string>
+
 </resources>

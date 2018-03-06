@@ -1,5 +1,7 @@
 package com.juange.todoprojects.domain.task.model
 
+import com.juange.todoprojects.util.formatDateToViewFormat
+
 data class Task(
         val projectName: String = "",
         val responsiblePartyLastName: String = "",
@@ -55,3 +57,5 @@ data class Task(
         val viewEstimatedTime: Boolean = false,
         val progress: Int = 0,
         val creatorAvatarUrl: String = "")
+
+fun Task.dueDateFormatted(): String = formatDateToViewFormat(this.dueDate)

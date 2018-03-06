@@ -31,6 +31,8 @@ object Libs {
     val retrofitVersion = "2.3.0"
     val gsonConverterVersion = "2.3.0"
     val okhttpVersion = "3.10.0"
+
+    val picasoVersion = "2.5.2"
 }
 
 object Tests {

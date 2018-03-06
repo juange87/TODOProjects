@@ -4,9 +4,6 @@ import android.util.Log
 import com.juange.todoprojects.domain.project.model.Project
 import com.juange.todoprojects.domain.project.usecase.GetLocalProjectsUseCase
 import com.juange.todoprojects.domain.project.usecase.GetProjectsUseCase
-import com.juange.todoprojects.domain.task.model.Task
-import com.juange.todoprojects.domain.task.usecase.GetLocalTaskByProjectUseCase
-import com.juange.todoprojects.domain.task.usecase.GetTasksUseCase
 import com.juange.todoprojects.presentation.base.BasePresenter
 import com.juange.todoprojects.presentation.base.Presenter
 import io.reactivex.observers.DisposableSingleObserver
@@ -14,25 +11,23 @@ import javax.inject.Inject
 
 class MainPresenter @Inject constructor(
         private val getProjectsUseCase: GetProjectsUseCase,
-        private val getLocalProjectsUseCase: GetLocalProjectsUseCase,
-        private val getLocalTaskByProjectUseCase: GetLocalTaskByProjectUseCase,
-        private val getTasksUseCase: GetTasksUseCase
+        private val getLocalProjectsUseCase: GetLocalProjectsUseCase
 ) : BasePresenter<MainPresenter.MainPresenterContractView>() {
 
     private lateinit var ui: MainPresenterContractView
 
     interface MainPresenterContractView : Presenter.View {
-        fun showErrorMessage()
-        fun loadProjects(projects: List<Project>)
         fun showLoading()
         fun hideLoading()
+        fun showErrorMessage(error: Throwable)
+        fun loadProjects(projects: List<Project>)
     }
 
     override fun attachView(view: MainPresenterContractView) {
         this.ui = view
     }
 
-    override fun init() {
+    fun init() {
         ui.showLoading()
 
         getLocalProjects()
@@ -80,48 +75,17 @@ class MainPresenter @Inject constructor(
         if (!projects.isEmpty()) {
             ui.hideLoading()
             ui.loadProjects(projects)
-           // getLocalTasksForProject(projects[0].id.toInt())
         }
-    }
-
-    private fun getLocalTasksForProject(projectId: Int) {
-        getLocalTaskByProjectUseCase.projectId = projectId
-        getLocalTaskByProjectUseCase.execute(observer = object : DisposableSingleObserver<List<Task>>() {
-
-            override fun onSuccess(tasks: List<Task>) {
-                Log.d("TODOPROJECT", "LOCAL TASKS LIST: " + tasks.toString())
-                //getRemoteTasks()
-            }
-
-            override fun onError(e: Throwable) {
-                Log.d("TODOPROJECT", "LOCAL ERROR TASKS: " + e.toString())
-            }
-        })
-    }
-
-    private fun getRemoteTasks() {
-        getTasksUseCase.execute(observer = object : DisposableSingleObserver<List<Task>>() {
-
-            override fun onSuccess(tasks: List<Task>) {
-                Log.d("TODOPROJECT", "REMOTE TASK LIST: " + tasks.toString())
-            }
-
-            override fun onError(e: Throwable) {
-                Log.d("TODOPROJECT", "REMOTE TASKS ERROR: " + e.toString())
-            }
-        })
-    }
-
-    override fun detachView() {
-        getProjectsUseCase.disposeStreams()
-        getLocalProjectsUseCase.disposeStreams()
-        getLocalTaskByProjectUseCase.disposeStreams()
-        getTasksUseCase.disposeStreams()
     }
 
     fun onRefreshProjects() {
         ui.showLoading()
 
         getRemoteProjects()
+    }
+
+    override fun detachView() {
+        getProjectsUseCase.disposeStreams()
+        getLocalProjectsUseCase.disposeStreams()
     }
 }

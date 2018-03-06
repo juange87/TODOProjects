@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import com.juange.todoprojects.R
 import com.juange.todoprojects.dagger.component.FragmentComponent
 import com.juange.todoprojects.domain.project.model.Project
+import com.juange.todoprojects.navigation.Navigator
 import com.juange.todoprojects.presentation.MainPresenter
 import com.juange.todoprojects.view.adapter.ProjectAdapter
 import kotlinx.android.synthetic.main.fragment_main.*
@@ -21,6 +22,9 @@ class MainFragment : BaseFragment(), MainPresenter.MainPresenterContractView, Sw
     @Inject
     lateinit var presenter: MainPresenter
 
+    @Inject
+    lateinit var navigator: Navigator
+
     private lateinit var adapter: ProjectAdapter
 
     override fun doInjection(fragmentComponent: FragmentComponent) {
@@ -30,7 +34,6 @@ class MainFragment : BaseFragment(), MainPresenter.MainPresenterContractView, Sw
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? =
             inflater?.inflate(R.layout.fragment_main, container, false)
 
-
     override fun onInitView() {
         initToolbar(toolbar = toolbar)
 
@@ -38,7 +41,7 @@ class MainFragment : BaseFragment(), MainPresenter.MainPresenterContractView, Sw
                 .VERTICAL)
         recycler.layoutManager = layoutManager
 //        adapter = ProjectAdapter(emptyList())
-        recycler.adapter = ProjectAdapter(emptyList())
+        recycler.adapter = ProjectAdapter(emptyList(), {})
 
         swipe_refresh.setOnRefreshListener(this)
         swipe_refresh.isSoundEffectsEnabled = true
@@ -58,14 +61,15 @@ class MainFragment : BaseFragment(), MainPresenter.MainPresenterContractView, Sw
         presenter.onRefreshProjects()
     }
 
-    override fun showErrorMessage() {
+    override fun showErrorMessage(error: Throwable) {
         view?.let {
-            Snackbar.make(it, getString(R.string.error_happened), Snackbar.LENGTH_LONG)
+            Snackbar.make(it, error.message.toString(), Snackbar.LENGTH_LONG)
         }
     }
 
     override fun loadProjects(projects: List<Project>) {
-        recycler.swapAdapter(ProjectAdapter(projects), false)
+        recycler.swapAdapter(ProjectAdapter(projects, { navigator.navigateToTasks(activity, it.id.toInt(), it.name) }),
+                false)
     }
 
     override fun showLoading() {

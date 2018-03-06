@@ -84,6 +84,8 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$Libs.gsonConverterVersion"
     implementation "com.squareup.okhttp3:okhttp:$Libs.okhttpVersion"
 
+    implementation "com.squareup.picasso:picasso:$Libs.picasoVersion"
+
     //TEST
     testImplementation "junit:junit:$Tests.jUnitVersion"
     testImplementation "org.mockito:mockito-core:$Tests.mockitoVersion"

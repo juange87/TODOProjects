@@ -26,5 +26,5 @@ object DateHelper {
 
 fun formatDateToViewFormat(dateString: String): String {
     val date = DateHelper.DF_SIMPLE_FORMAT_API.get().parse(dateString, ParsePosition(0))
-    return DateHelper.DF_SIMPLE_FORMAT_VIEW.get().format(date)
+    return date?.let { DateHelper.DF_SIMPLE_FORMAT_VIEW.get().format(date) } ?: ""
 }

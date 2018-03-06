@@ -8,7 +8,7 @@ import com.juange.todoprojects.domain.project.model.Project
 import com.juange.todoprojects.domain.project.model.datePeriodFormatted
 import kotlinx.android.synthetic.main.project_row.view.*
 
-class ProjectViewHolder(v: View) : RecyclerView.ViewHolder(v) {
+class ProjectViewHolder(v: View, private val onClick: (project: Project) -> Unit) : RecyclerView.ViewHolder(v) {
 
     fun bind(project: Project) {
         itemView.project_name.text = project.name
@@ -22,5 +22,7 @@ class ProjectViewHolder(v: View) : RecyclerView.ViewHolder(v) {
             itemView.context.resources.getDrawable(R.drawable.star_big_off, null)
         }
         itemView.starred.setImageDrawable(drawableStarred)
+
+        itemView.setOnClickListener { onClick(project) }
     }
 }

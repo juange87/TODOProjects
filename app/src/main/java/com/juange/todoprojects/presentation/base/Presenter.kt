@@ -6,7 +6,5 @@ interface Presenter<in V : Presenter.View> {
 
     fun attachView(view: V)
 
-    fun init()
-
     fun detachView()
 }

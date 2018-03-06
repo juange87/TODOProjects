@@ -52,12 +52,13 @@ abstract class BaseFragment : Fragment() {
         fragmentComponent.inject(this)
     }
 
-    fun initToolbar(toolbar: Toolbar, backNavigation: Boolean = false) {
+    fun initToolbar(toolbar: Toolbar, title: String? = null, backNavigation: Boolean = false) {
         baseActivity.setSupportActionBar(toolbar)
         if (backNavigation) {
             enableBackButton()
-            toolbar.setNavigationOnClickListener {  activity.onBackPressed() }
+            toolbar.setNavigationOnClickListener { baseActivity.onBackPressed() }
         }
+        title?.let { toolbar.title = title }
         val elevation = resources.getDimensionPixelSize(R.dimen.app_bar_elevation)
         ViewCompat.setElevation(toolbar, elevation.toFloat())
     }
