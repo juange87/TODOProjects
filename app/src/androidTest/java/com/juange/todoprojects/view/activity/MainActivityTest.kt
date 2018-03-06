@@ -12,7 +12,7 @@ class MainActivityTest : ScreenshotTest() {
 
     @Test
     @Throws(Exception::class)
-    fun testPinActivityLoaded() {
+    fun testMainActivityLoaded() {
         val activity = startActivity()
 
         Thread.sleep(2000) //I'm sorry for this shit
