@@ -5,7 +5,7 @@ import java.text.ParsePosition
 import java.text.SimpleDateFormat
 import java.util.*
 
-object DateHelper {
+object DateFormatter {
     const val DF_SIMPLE_STRING_API = "yyyyMMdd"
     const val DF_SIMPLE_STRING_VIEW = "dd/MM/yyyy"
 
@@ -24,7 +24,7 @@ object DateHelper {
     }
 }
 
-fun formatDateToViewFormat(dateString: String): String {
-    val date = DateHelper.DF_SIMPLE_FORMAT_API.get().parse(dateString, ParsePosition(0))
-    return date?.let { DateHelper.DF_SIMPLE_FORMAT_VIEW.get().format(date) } ?: ""
+fun formatDateToViewFormat(dateString: String?): String {
+    val date = DateFormatter.DF_SIMPLE_FORMAT_API.get().parse(dateString ?: "", ParsePosition(0))
+    return date?.let { DateFormatter.DF_SIMPLE_FORMAT_VIEW.get().format(date) } ?: ""
 }
