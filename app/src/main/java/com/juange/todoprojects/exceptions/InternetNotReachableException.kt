@@ -1,3 +1,3 @@
 package com.juange.todoprojects.exceptions
 
-class InternetNotReachableException : Exception()
+class InternetNotReachableException() : Exception("Internet is not reachable!")

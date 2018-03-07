@@ -1,3 +1,4 @@
 package com.juange.todoprojects.exceptions
 
-class NotAuthorizedException : Exception()
+class NotAuthorizedException : Exception("You are not authorized to request data!")
+

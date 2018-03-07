@@ -20,7 +20,7 @@ class TaskApiImpl @Inject constructor(
         @Named(ApiModule.TASK_SERVICE) private val service: TaskService,
         private val connectivityManager: NetConnectivityManager) : TaskApi {
 
-    override   fun getTasksByProject(projectId: Int): Single<List<TaskApiModel>> {
+    override fun getTasksByProject(projectId: Int): Single<List<TaskApiModel>> {
         return Single.create({
             if (!it.isDisposed) {
                 if (connectivityManager.internetConnectionAvailable()) {
@@ -41,7 +41,9 @@ class TaskApiImpl @Inject constructor(
                         Logger.i("MESSAGE: $message")
 
                         when (responseCode) {
-                            HttpResponseCodes.OK -> response.body()?.let { it1 -> it.onSuccess(it1.tasks ?: emptyList()) }
+                            HttpResponseCodes.OK -> response.body()?.let { it1 ->
+                                it.onSuccess(it1.tasks ?: emptyList())
+                            }
                             HttpResponseCodes.NOT_FOUND -> it.onError(NotFoundException())
                             HttpResponseCodes.SERVER_ERROR -> it.onError(ServerErrorException())
                             HttpResponseCodes.UNAUTHORIZED -> it.onError(NotAuthorizedException())
