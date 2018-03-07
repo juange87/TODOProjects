@@ -7,10 +7,10 @@ import java.io.InputStream
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
 
-class MockWebServerResponseBuilder(code: Int) {
+class MockWebServerResponseBuilder() {
     private val mockResponse: MockResponse = MockResponse()
 
-    init {
+    constructor(code: Int) : this() {
         mockResponse.setResponseCode(code)
     }
 
@@ -21,6 +21,11 @@ class MockWebServerResponseBuilder(code: Int) {
 
     fun httpCode404(): MockWebServerResponseBuilder {
         mockResponse.setResponseCode(HttpURLConnection.HTTP_NOT_FOUND)
+        return this
+    }
+
+    fun httpCode401(): MockWebServerResponseBuilder {
+        mockResponse.setResponseCode(HttpURLConnection.HTTP_UNAUTHORIZED)
         return this
     }
 
