@@ -9,7 +9,5 @@ import javax.inject.Inject
 class GetProjectsUseCase @Inject constructor(private val repository: ProjectRepository)
     : SingleUseCase<List<Project>>() {
 
-    override fun buildUseCaseObservable(): Single<List<Project>> {
-        return repository.getProjects()
-    }
+    override fun buildUseCaseObservable(): Single<List<Project>> = repository.getProjects()
 }

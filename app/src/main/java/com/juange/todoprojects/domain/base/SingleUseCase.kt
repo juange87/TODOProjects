@@ -6,6 +6,11 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 
+/*
+This is the core of the architecture
+
+It is based on other of my projects: https://github.com/juange87/JoiningAvengers/blob/master/domain/src/main/java/com/juange/joiningavengers/domain/base/usecase/UseCase.java
+ */
 abstract class SingleUseCase<T> {
 
     private var disposable: Disposable? = null
@@ -21,7 +26,7 @@ abstract class SingleUseCase<T> {
 
     fun disposeStreams() {
         if (disposable?.isDisposed == false) {
-            disposable!!.dispose()
+            disposable?.dispose()
         }
     }
 }

@@ -13,7 +13,7 @@ import com.juange.todoprojects.dagger.component.FragmentComponent
 import com.juange.todoprojects.domain.project.model.Project
 import com.juange.todoprojects.navigation.Navigator
 import com.juange.todoprojects.presentation.MainPresenter
-import com.juange.todoprojects.view.adapter.ProjectAdapter
+import com.juange.todoprojects.view.adapter.project.ProjectAdapter
 import kotlinx.android.synthetic.main.fragment_main.*
 import javax.inject.Inject
 

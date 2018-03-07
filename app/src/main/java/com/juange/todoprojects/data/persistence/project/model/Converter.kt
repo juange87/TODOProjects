@@ -8,14 +8,10 @@ class Converter {
 
     @TypeConverter
     fun fromString(value: String): List<TagRoomEntity>? {
-        val listType = object : TypeToken<List<TagRoomEntity>>() {
-
-        }.type
+        val listType = object : TypeToken<List<TagRoomEntity>>() { }.type
         return Gson().fromJson<List<TagRoomEntity>>(value, listType)
     }
 
     @TypeConverter
-    fun fromList(list: List<TagRoomEntity>): String {
-        return Gson().toJson(list)
-    }
+    fun fromList(list: List<TagRoomEntity>): String = Gson().toJson(list)
 }

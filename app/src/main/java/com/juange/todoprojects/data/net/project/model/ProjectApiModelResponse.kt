@@ -4,5 +4,6 @@ import com.google.gson.annotations.SerializedName
 
 data class ProjectApiModelResponse(
         @SerializedName("STATUS") val status: String = "",
-        @SerializedName("projects") val projects: List<ProjectApiModel>?)
+        @SerializedName("projects") val projects: List<ProjectApiModel>?
+)
 

@@ -1,7 +1,5 @@
 package com.juange.todoprojects.domain.project.model
 
-import com.juange.todoprojects.util.formatDateToViewFormat
-
 data class Project(
         val replyByEmailEnabled: Boolean = false,
         val endDate: String = "",
@@ -29,10 +27,5 @@ data class Project(
         val harvestTimersEnabled: Boolean = false,
         val category: Category = Category(),
         val startDate: String = "",
-        val status: String = "")
-
-fun Project.startDateFormatted(): String = formatDateToViewFormat(this.startDate)
-
-fun Project.endDateFormatted(): String = formatDateToViewFormat(this.endDate)
-
-fun Project.datePeriodFormatted(): String = "${this.startDateFormatted()} - ${this.endDateFormatted()}"
+        val status: String = ""
+)

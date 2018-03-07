@@ -9,7 +9,5 @@ import javax.inject.Inject
 class GetLocalProjectsUseCase @Inject constructor(private val repository: ProjectRepository)
     : SingleUseCase<List<Project>>() {
 
-    override fun buildUseCaseObservable(): Single<List<Project>> {
-        return repository.getLocalProjects()
-    }
+    override fun buildUseCaseObservable(): Single<List<Project>> = repository.getLocalProjects()
 }

@@ -4,12 +4,9 @@ import com.google.gson.annotations.SerializedName
 import com.juange.todoprojects.domain.project.model.Tag
 
 data class TagApiModel(
-        @SerializedName("color")
-        val color: String = "",
-        @SerializedName("name")
-        val name: String = "",
-        @SerializedName("id")
-        val id: String = "")
+        @SerializedName("color") val color: String = "",
+        @SerializedName("name") val name: String = "",
+        @SerializedName("id") val id: String = "")
 
 fun TagApiModel.mapToDomain(): Tag {
     return Tag(

@@ -4,12 +4,9 @@ import com.google.gson.annotations.SerializedName
 import com.juange.todoprojects.domain.project.model.Company
 
 data class CompanyApiModel(
-        @SerializedName("is-owner")
-        val isOwner: String = "",
-        @SerializedName("name")
-        val name: String = "",
-        @SerializedName("id")
-        val id: String = "")
+        @SerializedName("is-owner") val isOwner: String = "",
+        @SerializedName("name") val name: String = "",
+        @SerializedName("id") val id: String = "")
 
 fun CompanyApiModel.mapToDomain(): Company {
         return Company(

@@ -11,7 +11,5 @@ class GetLocalTaskByProjectUseCase @Inject constructor(private val repository: T
 
     var projectId: Int = 0
 
-    override fun buildUseCaseObservable(): Single<List<Task>> {
-        return repository.getLocalTasksByProject(projectId)
-    }
+    override fun buildUseCaseObservable(): Single<List<Task>> = repository.getLocalTasksByProject(projectId)
 }

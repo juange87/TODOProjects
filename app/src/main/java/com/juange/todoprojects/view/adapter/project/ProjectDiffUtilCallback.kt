@@ -1,4 +1,4 @@
-package com.juange.todoprojects.view.adapter
+package com.juange.todoprojects.view.adapter.project
 
 import android.support.v7.util.DiffUtil
 import com.juange.todoprojects.domain.project.model.Project

@@ -10,7 +10,5 @@ class MainActivity : BaseActivity() {
         component.inject(this)
     }
 
-    override fun onViewReady() {
-        //TODO  STUFF HERE
-    }
+    override fun onViewReady() { }
 }

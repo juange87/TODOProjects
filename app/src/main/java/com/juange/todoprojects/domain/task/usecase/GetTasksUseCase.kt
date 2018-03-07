@@ -11,7 +11,5 @@ class GetTasksUseCase @Inject constructor(private val repository: TaskRepository
 
     var projectId: Int = 0
 
-    override fun buildUseCaseObservable(): Single<List<Task>> {
-        return repository.getTasksByProject(projectId)
-    }
+    override fun buildUseCaseObservable(): Single<List<Task>> = repository.getTasksByProject(projectId)
 }

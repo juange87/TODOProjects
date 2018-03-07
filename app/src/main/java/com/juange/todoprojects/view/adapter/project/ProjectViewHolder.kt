@@ -1,4 +1,4 @@
-package com.juange.todoprojects.view.adapter
+package com.juange.todoprojects.view.adapter.project
 
 import android.R
 import android.graphics.drawable.Drawable

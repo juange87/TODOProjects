@@ -14,7 +14,7 @@ import com.juange.todoprojects.domain.task.model.Task
 import com.juange.todoprojects.presentation.TasksPresenter
 import com.juange.todoprojects.view.activity.TasksActivity.Companion.ARG_PROJECT_ID
 import com.juange.todoprojects.view.activity.TasksActivity.Companion.ARG_PROJECT_NAME
-import com.juange.todoprojects.view.adapter.TasksAdapter
+import com.juange.todoprojects.view.adapter.task.TasksAdapter
 import kotlinx.android.synthetic.main.fragment_task.*
 import javax.inject.Inject
 

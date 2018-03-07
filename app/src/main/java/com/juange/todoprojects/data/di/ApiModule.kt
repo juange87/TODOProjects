@@ -29,21 +29,15 @@ class ApiModule {
 
     @Provides
     @Named(Companion.ENDPOINT)
-    fun provideEndpoint(): String {
-        return "https://yat.teamwork.com/"
-    }
+    fun provideEndpoint(): String = "https://yat.teamwork.com/"
 
     @Provides
     @Named(Companion.API_TOKEN)
-    fun provideApiToken(): String {
-        return "twp_0wP7w7u8hog5lZMg3L8wBDMVCuxo"
-    }
+    fun provideApiToken(): String = "twp_0wP7w7u8hog5lZMg3L8wBDMVCuxo"
 
     @Provides
     @Named(Companion.API_PASSWORD)
-    fun provideApiPassword(): String {
-        return "xxx"
-    }
+    fun provideApiPassword(): String = "xxx"
 
     @Provides
     @Named(Companion.API_AUTH)
@@ -58,9 +52,7 @@ class ApiModule {
 
     @Provides
     @Named(Companion.GSON_CONVERTER)
-    fun provideGsonConverter(): GsonConverterFactory? {
-        return GsonConverterFactory.create()
-    }
+    fun provideGsonConverter(): GsonConverterFactory? = GsonConverterFactory.create()
 
     @Provides
     @Named(Companion.OKHTTP_CLIENT)
@@ -100,15 +92,13 @@ class ApiModule {
 
     @Provides
     @Named(Companion.PROJECT_SERVICE)
-    fun provideProjectService(@Named(Companion.RETROFIT_CLIENT) retrofit: Retrofit): ProjectService {
-        return retrofit.create(ProjectService::class.java)
-    }
+    fun provideProjectService(@Named(Companion.RETROFIT_CLIENT) retrofit: Retrofit): ProjectService =
+            retrofit.create(ProjectService::class.java)
 
     @Provides
     @Named(Companion.TASK_SERVICE)
-    fun provideTaskService(@Named(Companion.RETROFIT_CLIENT) retrofit: Retrofit): TaskService {
-        return retrofit.create(TaskService::class.java)
-    }
+    fun provideTaskService(@Named(Companion.RETROFIT_CLIENT) retrofit: Retrofit): TaskService =
+            retrofit.create(TaskService::class.java)
 
     companion object {
         const val ENDPOINT = "endpoint"

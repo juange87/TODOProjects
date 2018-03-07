@@ -1,4 +1,4 @@
-package com.juange.todoprojects.view.adapter
+package com.juange.todoprojects.view.adapter.task
 
 import android.support.v7.util.DiffUtil
 import com.juange.todoprojects.domain.task.model.Task

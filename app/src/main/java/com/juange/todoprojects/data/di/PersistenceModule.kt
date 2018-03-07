@@ -20,9 +20,8 @@ class PersistenceModule {
     @Provides
     @Singleton
     @Named(DATABASE)
-    fun provideDataBase(context: Context): DataBase {
-        return Room.databaseBuilder(context.applicationContext, DataBase::class.java, "project_room").build()
-    }
+    fun provideDataBase(context: Context): DataBase =
+            Room.databaseBuilder(context.applicationContext, DataBase::class.java, "project_room").build()
 
     @Provides
     @Singleton
@@ -34,15 +33,11 @@ class PersistenceModule {
 
     @Provides
     @Singleton
-    fun provideProjectRoomDao(@Named(DATABASE) dataBase: DataBase): ProjectRoomDao {
-        return dataBase.projectRoomDao()
-    }
+    fun provideProjectRoomDao(@Named(DATABASE) dataBase: DataBase): ProjectRoomDao = dataBase.projectRoomDao()
 
     @Provides
     @Singleton
-    fun provideTaskRoomDao(@Named(DATABASE) dataBase: DataBase): TaskRoomDao {
-        return dataBase.taskRoomDao()
-    }
+    fun provideTaskRoomDao(@Named(DATABASE) dataBase: DataBase): TaskRoomDao = dataBase.taskRoomDao()
 
     companion object {
         const val DATABASE = "database"
