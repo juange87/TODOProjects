@@ -40,8 +40,8 @@ class MainFragment : BaseFragment(), MainPresenter.MainPresenterContractView, Sw
         val layoutManager: RecyclerView.LayoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager
                 .VERTICAL)
         recycler.layoutManager = layoutManager
-//        adapter = ProjectAdapter(emptyList())
-        recycler.adapter = ProjectAdapter(emptyList(), {})
+        adapter = ProjectAdapter(mutableListOf(), { navigator.navigateToTasks(activity, it.id.toInt(), it.name) })
+        recycler.adapter = adapter
 
         swipe_refresh.setOnRefreshListener(this)
         swipe_refresh.isSoundEffectsEnabled = true
@@ -68,8 +68,7 @@ class MainFragment : BaseFragment(), MainPresenter.MainPresenterContractView, Sw
     }
 
     override fun loadProjects(projects: List<Project>) {
-        recycler.swapAdapter(ProjectAdapter(projects, { navigator.navigateToTasks(activity, it.id.toInt(), it.name) }),
-                false)
+        adapter.notifyChanges(projects)
     }
 
     override fun showLoading() {

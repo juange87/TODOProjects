@@ -1,6 +1,5 @@
 package com.juange.todoprojects.presentation
 
-import android.util.Log
 import com.juange.todoprojects.domain.project.model.Project
 import com.juange.todoprojects.domain.project.usecase.GetLocalProjectsUseCase
 import com.juange.todoprojects.domain.project.usecase.GetProjectsUseCase
@@ -37,14 +36,12 @@ class MainPresenter @Inject constructor(
         getLocalProjectsUseCase.execute(observer = object : DisposableSingleObserver<List<Project>>() {
 
             override fun onSuccess(todos: List<Project>) {
-                Log.d("TODOPROJECT", "LOCAL LIST: " + todos.toString())
-
                 manageResult(todos)
             }
 
-            override fun onError(e: Throwable) {
+            override fun onError(error: Throwable) {
                 ui.hideLoading()
-                Log.d("TODOPROJECT", "LOCALERROR: " + e.toString())
+                ui.showErrorMessage(error)
             }
         })
     }
@@ -60,13 +57,12 @@ class MainPresenter @Inject constructor(
         getProjectsUseCase.execute(observer = object : DisposableSingleObserver<List<Project>>() {
 
             override fun onSuccess(projects: List<Project>) {
-                Log.d("TODOPROJECT", "REMOTE LIST: " + projects.toString())
                 manageGetRemoteProjects(projects)
             }
 
-            override fun onError(e: Throwable) {
+            override fun onError(error: Throwable) {
                 ui.hideLoading()
-                Log.d("TODOPROJECT", "REMOTEERROR: " + e.toString())
+                ui.showErrorMessage(error)
             }
         })
     }
@@ -80,7 +76,6 @@ class MainPresenter @Inject constructor(
 
     fun onRefreshProjects() {
         ui.showLoading()
-
         getRemoteProjects()
     }
 

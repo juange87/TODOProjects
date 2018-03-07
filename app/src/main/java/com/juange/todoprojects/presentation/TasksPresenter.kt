@@ -1,6 +1,5 @@
 package com.juange.todoprojects.presentation
 
-import android.util.Log
 import com.juange.todoprojects.domain.task.model.Task
 import com.juange.todoprojects.domain.task.usecase.GetLocalTaskByProjectUseCase
 import com.juange.todoprojects.domain.task.usecase.GetTasksUseCase
@@ -39,12 +38,10 @@ class TasksPresenter @Inject constructor(
         getLocalTaskByProjectUseCase.execute(observer = object : DisposableSingleObserver<List<Task>>() {
 
             override fun onSuccess(tasks: List<Task>) {
-                Log.d("TODOPROJECT", "LOCAL TASKS LIST: " + tasks.toString())
                 manageLocalResult(tasks)
             }
 
             override fun onError(error: Throwable) {
-                Log.d("TODOPROJECT", "LOCAL ERROR TASKS: " + error.toString())
                 ui.hideLoading()
                 ui.showErrorMessage(error)
             }
@@ -63,12 +60,10 @@ class TasksPresenter @Inject constructor(
         getTasksUseCase.execute(observer = object : DisposableSingleObserver<List<Task>>() {
 
             override fun onSuccess(tasks: List<Task>) {
-                Log.d("TODOPROJECT", "REMOTE TASK LIST: " + tasks.toString())
                 manageRemoteResult(tasks)
             }
 
             override fun onError(error: Throwable) {
-                Log.d("TODOPROJECT", "REMOTE TASKS ERROR: " + error.toString())
                 ui.hideLoading()
                 ui.showErrorMessage(error)
             }

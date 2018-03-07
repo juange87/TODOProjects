@@ -33,14 +33,10 @@ class TaskFragment : BaseFragment(), TasksPresenter.TaskPresenterContractView, S
             inflater.inflate(R.layout.fragment_task, container, false)
 
     override fun onInitView() {
-//        initToolbar(toolbar = toolbar, backNavigation = true)
-
-        //val layoutManager: RecyclerView.LayoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager
-//                .VERTICAL)
         val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(context)
         recycler.layoutManager = layoutManager
-//        adapter = TasksAdapter(emptyList())
-        recycler.adapter = TasksAdapter(emptyList())
+        adapter = TasksAdapter(mutableListOf())
+        recycler.adapter = adapter
 
         swipe_refresh.setOnRefreshListener(this)
         swipe_refresh.isSoundEffectsEnabled = true
@@ -84,6 +80,6 @@ class TaskFragment : BaseFragment(), TasksPresenter.TaskPresenterContractView, S
     }
 
     override fun loadTasks(tasks: List<Task>) {
-        recycler.swapAdapter(TasksAdapter(tasks), false)
+        adapter.notifyChanges(tasks)
     }
 }
