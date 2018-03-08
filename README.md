@@ -26,6 +26,10 @@ The verification of the code has been done through several kind of tests.
 
 Evaluation of simple classes which contains certain logic
 
+### Unit Testing
+
+Some UI tests using Espresso library.
+
 ### ScreenShot Testing
 
 This kind of tests verify the UI of certain app recording a screenshot over an activity and verify it on CI system.
