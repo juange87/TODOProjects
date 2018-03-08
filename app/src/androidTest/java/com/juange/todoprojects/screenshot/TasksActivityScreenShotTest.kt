@@ -6,7 +6,14 @@ import com.juange.todoprojects.ScreenshotTest
 import org.junit.Rule
 import org.junit.Test
 
-class TasksActivityTest : ScreenshotTest() {
+/**
+ * Note: Mi intention here was provide mocks of the repositories thanks to DaggerMock (https://github.com/fabioCollini/DaggerMock)
+ *
+ * So, in that way I haven't to rely on the Network.
+ *
+ * This is the reason of the Thread.sleep(2000)
+ */
+class TasksActivityScreenShotTest : ScreenshotTest() {
 
     @get:Rule
     var activityRule = IntentsTestRule(TasksActivity::class.java, true, false)
