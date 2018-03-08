@@ -12,6 +12,8 @@ import org.junit.Test
  * So, in that way I haven't to rely on the Network.
  *
  * This is the reason of the Thread.sleep(2000)
+ *
+ * Until I have time to improve this part
  */
 class TasksActivityScreenShotTest : ScreenshotTest() {
 
