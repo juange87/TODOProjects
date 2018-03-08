@@ -26,7 +26,7 @@ The verification of the code has been done through several kind of tests.
 
 Evaluation of simple classes which contains certain logic
 
-### Unit Testing
+### UI Testing
 
 Some UI tests using Espresso library.
 
