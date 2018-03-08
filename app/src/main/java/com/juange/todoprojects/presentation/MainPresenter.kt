@@ -68,8 +68,8 @@ class MainPresenter @Inject constructor(
     }
 
     private fun manageGetRemoteProjects(projects: List<Project>) {
+        ui.hideLoading()
         if (!projects.isEmpty()) {
-            ui.hideLoading()
             ui.loadProjects(projects)
         }
     }

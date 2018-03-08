@@ -71,8 +71,8 @@ class TasksPresenter @Inject constructor(
     }
 
     private fun manageRemoteResult(tasks: List<Task>) {
+        ui.hideLoading()
         if (!tasks.isEmpty()) {
-            ui.hideLoading()
             ui.loadTasks(tasks)
         }
     }
