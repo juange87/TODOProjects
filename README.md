@@ -1,4 +1,4 @@
-# TODO Projects
+# TODO Projects [![Build Status](https://www.bitrise.io/app/945976826fface1b/status.svg?token=VbNI8oEqRmVKMw22q7XRSw&branch=develop)](https://www.bitrise.io/app/945976826fface1b)
 
 Sample app to manage the projects and tasks on a Teamwork.com account.
 
