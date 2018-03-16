@@ -11,12 +11,7 @@ import dagger.Provides
 import javax.inject.Singleton
 
 @Module(
-        includes = arrayOf(
-                RepositoriesModule::class,
-                DataSourceModule::class,
-                ApiModule::class,
-                PersistenceModule::class
-        )
+        includes = [(RepositoriesModule::class), (DataSourceModule::class), (ApiModule::class), (PersistenceModule::class)]
 )
 class AppModule(private val application: AndroidApplication) {
 
