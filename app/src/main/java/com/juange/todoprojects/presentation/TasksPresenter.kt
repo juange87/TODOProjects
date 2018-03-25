@@ -1,16 +1,15 @@
 package com.juange.todoprojects.presentation
 
 import com.juange.todoprojects.domain.task.model.Task
-import com.juange.todoprojects.domain.task.usecase.GetLocalTaskByProjectUseCase
-import com.juange.todoprojects.domain.task.usecase.GetTasksUseCase
+import com.juange.todoprojects.domain.task.usecase.GetLocalTaskByProjectUseCase2
+import com.juange.todoprojects.domain.task.usecase.GetTasksUseCase2
 import com.juange.todoprojects.presentation.base.BasePresenter
 import com.juange.todoprojects.presentation.base.Presenter
-import io.reactivex.observers.DisposableSingleObserver
 import javax.inject.Inject
 
 class TasksPresenter @Inject constructor(
-        private val getLocalTaskByProjectUseCase: GetLocalTaskByProjectUseCase,
-        private val getTasksUseCase: GetTasksUseCase
+        private val getLocalTaskByProjectUseCase2: GetLocalTaskByProjectUseCase2,
+        private val getTasksUseCase2: GetTasksUseCase2
 ) : BasePresenter<TasksPresenter.TaskPresenterContractView>() {
 
     private lateinit var ui: TaskPresenterContractView
@@ -34,18 +33,10 @@ class TasksPresenter @Inject constructor(
     }
 
     private fun getLocalTasks() {
-        getLocalTaskByProjectUseCase.projectId = projectId
-        getLocalTaskByProjectUseCase.execute(observer = object : DisposableSingleObserver<List<Task>>() {
-
-            override fun onSuccess(tasks: List<Task>) {
-                manageLocalResult(tasks)
-            }
-
-            override fun onError(error: Throwable) {
-                ui.hideLoading()
-                ui.showErrorMessage(error)
-            }
-        })
+        launchAsyncTryCatch(
+                { manageLocalResult(getLocalTaskByProjectUseCase2.execute(projectId)) },
+                { ui.showErrorMessage(it) }
+        )
     }
 
     private fun manageLocalResult(tasks: List<Task>) {
@@ -56,18 +47,10 @@ class TasksPresenter @Inject constructor(
     }
 
     private fun getRemoteTasks() {
-        getTasksUseCase.projectId = projectId
-        getTasksUseCase.execute(observer = object : DisposableSingleObserver<List<Task>>() {
-
-            override fun onSuccess(tasks: List<Task>) {
-                manageRemoteResult(tasks)
-            }
-
-            override fun onError(error: Throwable) {
-                ui.hideLoading()
-                ui.showErrorMessage(error)
-            }
-        })
+        launchAsyncTryCatch(
+                { manageRemoteResult(getTasksUseCase2.execute(projectId)) },
+                { ui.showErrorMessage(it) }
+        )
     }
 
     private fun manageRemoteResult(tasks: List<Task>) {
@@ -83,7 +66,6 @@ class TasksPresenter @Inject constructor(
     }
 
     override fun detachView() {
-        getLocalTaskByProjectUseCase.disposeStreams()
-        getTasksUseCase.disposeStreams()
+        cleanup()
     }
 }

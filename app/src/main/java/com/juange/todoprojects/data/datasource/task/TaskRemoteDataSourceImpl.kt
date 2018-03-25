@@ -7,5 +7,5 @@ import javax.inject.Inject
 
 class TaskRemoteDataSourceImpl @Inject constructor(private val api: TaskApi) : TaskRemoteDataSource {
 
-    override fun getTasksByProject(projectId: Int): Single<List<TaskApiModel>> = api.getTasksByProject(projectId)
+    override fun getTasksByProject(projectId: Int): List<TaskApiModel> = api.getTasksByProject(projectId)
 }

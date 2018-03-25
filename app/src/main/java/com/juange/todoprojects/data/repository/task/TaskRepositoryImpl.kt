@@ -12,20 +12,19 @@ import javax.inject.Inject
 
 class TaskRepositoryImpl @Inject constructor(
         private val local: TaskLocalDataSource,
-        private val remote: TaskRemoteDataSource) : TaskRepository {
+        private val remote: TaskRemoteDataSource
+) : TaskRepository {
 
-    override fun getTasksByProject(projectId: Int): Single<List<Task>> {
-        return remote.getTasksByProject(projectId)
-                .map { it.mapToDomain() }
-                .flatMap { storeTasks(it) }
+    override fun getTasksByProject(projectId: Int): List<Task> {
+        return storeTasks(remote.getTasksByProject(projectId).mapToDomain())
     }
 
-    override fun getLocalTasksByProject(projectId: Int): Single<List<Task>> {
+    override fun getLocalTasksByProject(projectId: Int): List<Task> {
         return local.getTasksByProject(projectId)
                 .map { it.mapToDomain() }
     }
 
-    override fun storeTasks(tasks: List<Task>): Single<List<Task>> {
+    override fun storeTasks(tasks: List<Task>): List<Task> {
         return local.storeTasks(tasks.maptToEntity())
                 .map { it.mapToDomain() }
     }
