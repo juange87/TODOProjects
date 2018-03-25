@@ -1,10 +1,9 @@
 package com.juange.todoprojects.domain.project.repository
 
 import com.juange.todoprojects.domain.project.model.Project
-import io.reactivex.Single
 
 interface ProjectRepository {
-    fun getProjects(): Single<List<Project>>
-    fun getLocalProjects(): Single<List<Project>>
-    fun storeProjects(projects: List<Project>): Single<List<Project>>
+    fun getProjects(): List<Project>
+    fun getLocalProjects(): List<Project>
+    fun storeProjects(projects: List<Project>): List<Project>
 }

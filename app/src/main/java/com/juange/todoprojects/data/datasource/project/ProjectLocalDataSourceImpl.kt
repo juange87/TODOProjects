@@ -7,8 +7,8 @@ import javax.inject.Inject
 
 class ProjectLocalDataSourceImpl @Inject constructor(private val storage: ProjectStorage) : ProjectLocalDataSource {
 
-    override fun getProjects(): Single<List<ProjectRoomEntity>> = storage.getProjects()
+    override fun getProjects(): List<ProjectRoomEntity> = storage.getProjects()
 
-    override fun storeProjects(projects: List<ProjectRoomEntity>): Single<List<ProjectRoomEntity>> =
+    override fun storeProjects(projects: List<ProjectRoomEntity>): List<ProjectRoomEntity> =
             storage.storeProjects(projects)
 }

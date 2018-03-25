@@ -64,7 +64,7 @@ fun ProjectApiModel.mapToDomain(): Project {
             status = this.status)
 }
 
-fun Collection<ProjectApiModel>.mapToDomain(): List<Project> = this.map { it.mapToDomain() }
+fun List<ProjectApiModel>.mapToDomain(): List<Project> = this.map { it.mapToDomain() }
 
 fun Project.mapToApi(): ProjectApiModel {
     return ProjectApiModel(

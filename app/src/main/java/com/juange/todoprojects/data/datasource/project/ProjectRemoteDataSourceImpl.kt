@@ -7,5 +7,5 @@ import javax.inject.Inject
 
 class ProjectRemoteDataSourceImpl @Inject constructor(private val api: ProjectApi) : ProjectRemoteDataSource {
 
-    override fun getProjects(): Single<List<ProjectApiModel>> = api.getProjects()
+    override fun getProjects(): List<ProjectApiModel> = api.getProjects()
 }

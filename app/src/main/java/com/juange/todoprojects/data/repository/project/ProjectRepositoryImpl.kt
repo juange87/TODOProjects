@@ -7,23 +7,17 @@ import com.juange.todoprojects.data.persistence.room.model.mapToDomain
 import com.juange.todoprojects.data.persistence.room.model.mapToEntity
 import com.juange.todoprojects.domain.project.model.Project
 import com.juange.todoprojects.domain.project.repository.ProjectRepository
-import io.reactivex.Single
 import javax.inject.Inject
 
 class ProjectRepositoryImpl @Inject constructor(
         private val local: ProjectLocalDataSource,
-        private val remote: ProjectRemoteDataSource) : ProjectRepository {
+        private val remote: ProjectRemoteDataSource
+) : ProjectRepository {
 
-    override fun getProjects(): Single<List<Project>> {
-        return remote.getProjects()
-                .map { it.mapToDomain() }
-                .flatMap { storeProjects(it) }
-    }
+    override fun getProjects(): List<Project> = storeProjects(remote.getProjects().mapToDomain())
 
-    override fun getLocalProjects(): Single<List<Project>> = local.getProjects().map { it.mapToDomain() }
+    override fun getLocalProjects(): List<Project> = local.getProjects().mapToDomain()
 
-    override fun storeProjects(projects: List<Project>): Single<List<Project>> {
-        return local.storeProjects(projects.mapToEntity())
-                .map { it.mapToDomain() }
-    }
+    override fun storeProjects(projects: List<Project>): List<Project> =
+            local.storeProjects(projects.mapToEntity()).mapToDomain()
 }
