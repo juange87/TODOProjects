@@ -24,9 +24,6 @@ object Libs {
 
     val daggerVersion = "2.14.1"
 
-    val rxJavaVersion = "2.1.10"
-    val rxAndroidVersion = "2.0.2"
-
     val roomVersion = "1.0.0"
 
     val retrofitVersion = "2.3.0"
