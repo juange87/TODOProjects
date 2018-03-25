@@ -74,6 +74,10 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxandroid:$Libs.rxAndroidVersion"
     implementation "io.reactivex.rxjava2:rxjava:$Libs.rxJavaVersion"
 
+    //COROUTINES
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$Libs.coroutinesVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$Libs.coroutinesVersion"
+
     //ROOM
     implementation "android.arch.persistence.room:runtime:$Libs.roomVersion"
     implementation "android.arch.persistence.room:rxjava2:$Libs.roomVersion"
