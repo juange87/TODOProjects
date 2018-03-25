@@ -16,7 +16,8 @@ object Core {
 }
 
 object Libs {
-    val kotlinVersion = "1.2.30"
+    val kotlinVersion = "1.2.31"
+    val coroutinesVersion = "0.22.5"
 
     val appCompatVersion = "26.1.0"
     val constraintLayoutVersion = "1.0.2"
