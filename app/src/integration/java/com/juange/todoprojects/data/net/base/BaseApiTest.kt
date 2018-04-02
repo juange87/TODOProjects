@@ -21,7 +21,7 @@ abstract class BaseApiTest {
         server.start()
         endpoint = server.url(URL)
 
-        netConnectivityManager = mockk<NetConnectivityManager>()
+        netConnectivityManager = mockk()
         onInit()
     }
 

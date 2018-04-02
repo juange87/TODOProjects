@@ -2,13 +2,11 @@ package com.juange.todoprojects.data.net.task.api
 
 import com.juange.todoprojects.data.net.base.BaseApiTest
 import com.juange.todoprojects.data.net.base.MockWebServerResponseBuilder
-import com.juange.todoprojects.data.net.task.model.TaskApiModel
 import com.juange.todoprojects.exceptions.InternetNotReachableException
 import com.juange.todoprojects.exceptions.NotAuthorizedException
 import com.juange.todoprojects.exceptions.NotFoundException
 import com.juange.todoprojects.exceptions.ServerErrorException
 import io.mockk.every
-import io.reactivex.observers.TestObserver
 import junit.framework.Assert
 import org.junit.Test
 
@@ -28,16 +26,8 @@ class TaskApiTest : BaseApiTest() {
         val response = MockWebServerResponseBuilder(200).bodyFromFile(TASKS_RESPONSE).build()
         server.enqueue(response)
 
-        val testObserver = TestObserver<List<TaskApiModel>>()
-        api.getTasksByProject(0)
-                .subscribe(testObserver)
-
-        testObserver.assertNoErrors()
-        testObserver.assertValueCount(1)
-        testObserver.assertValue({
-            Assert.assertTrue(it.size == 250)
-            true
-        })
+        val tasksByProject = api.getTasksByProject(0)
+        Assert.assertTrue(tasksByProject.size == 250)
     }
 
     @Test
@@ -47,72 +37,48 @@ class TaskApiTest : BaseApiTest() {
         val response = MockWebServerResponseBuilder(200).bodyFromFile(EMPTY_RESPONSE).build()
         server.enqueue(response)
 
-        val testObserver = TestObserver<List<TaskApiModel>>()
-        api.getTasksByProject(0)
-                .subscribe(testObserver)
-
-        testObserver.assertNoErrors()
-        testObserver.assertValueCount(1)
-        testObserver.assertValue({
-            Assert.assertTrue(it.isEmpty())
-            true
-        })
+        val tasksByProject = api.getTasksByProject(0)
+        Assert.assertTrue(tasksByProject.isEmpty())
     }
 
-    @Test
+    @Test(expected = ServerErrorException::class)
     fun testGetTasks500Error() {
         every { netConnectivityManager.internetConnectionAvailable() } answers { true }
 
         val response = MockWebServerResponseBuilder().httpCode500().build()
         server.enqueue(response)
 
-        val testObserver = TestObserver<List<TaskApiModel>>()
         api.getTasksByProject(0)
-                .subscribe(testObserver)
-
-        testObserver.assertError { it is ServerErrorException }
     }
 
-    @Test
+    @Test(expected = NotFoundException::class)
     fun testGetTasks404Error() {
         every { netConnectivityManager.internetConnectionAvailable() } answers { true }
 
         val response = MockWebServerResponseBuilder().httpCode404().build()
         server.enqueue(response)
 
-        val testObserver = TestObserver<List<TaskApiModel>>()
         api.getTasksByProject(0)
-                .subscribe(testObserver)
-
-        testObserver.assertError { it is NotFoundException }
     }
 
-    @Test
+    @Test(expected = NotAuthorizedException::class)
     fun testGetTasks401Error() {
         every { netConnectivityManager.internetConnectionAvailable() } answers { true }
 
         val response = MockWebServerResponseBuilder().httpCode401().build()
         server.enqueue(response)
 
-        val testObserver = TestObserver<List<TaskApiModel>>()
         api.getTasksByProject(0)
-                .subscribe(testObserver)
-
-        testObserver.assertError { it is NotAuthorizedException }
     }
 
-    @Test
+    @Test(expected = InternetNotReachableException::class)
     fun testGetTasksNoInternetError() {
         every { netConnectivityManager.internetConnectionAvailable() } answers { false }
 
         val response = MockWebServerResponseBuilder(200).bodyFromFile(EMPTY_RESPONSE).build()
         server.enqueue(response)
 
-        val testObserver = TestObserver<List<TaskApiModel>>()
         api.getTasksByProject(0)
-                .subscribe(testObserver)
-
-        testObserver.assertError { it is InternetNotReachableException }
     }
 
 
